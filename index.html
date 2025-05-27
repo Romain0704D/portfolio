@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio BUT Réseaux et Télécommunications</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <button class="menu-btn" onclick="toggleSidebar()">☰</button>
+
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="sidebar-title">Portfolio BUT R&T</div>
+        </div>
+        
+        <div class="menu-item">
+            <button class="menu-toggle" onclick="toggleMenu('page-garde-menu')">
+                Page de garde <span class="arrow">▶</span>
+            </button>
+            <div class="menu-content" id="page-garde-menu">
+                <div class="submenu-item" onclick="showSection('page-garde')">Présentation</div>
+            </div>
+        </div>
+
+        <div class="menu-item">
+            <button class="menu-toggle" onclick="toggleMenu('description-menu')">
+                Description personnelle <span class="arrow">▶</span>
+            </button>
+            <div class="menu-content" id="description-menu">
+                <div class="submenu-item" onclick="showSection('profil')">Mon profil</div>
+                <div class="submenu-item" onclick="showSection('parcours')">Parcours scolaire</div>
+            </div>
+        </div>
+
+        <div class="menu-item">
+            <button class="menu-toggle" onclick="toggleMenu('objectifs-menu')">
+                Objectifs <span class="arrow">▶</span>
+            </button>
+            <div class="menu-content" id="objectifs-menu">
+                <div class="submenu-item" onclick="showSection('objectifs-academiques')">Académiques</div>
+                <div class="submenu-item" onclick="showSection('objectifs-professionnels')">Professionnels</div>
+            </div>
+        </div>
+
+        <div class="menu-item">
+            <button class="menu-toggle" onclick="toggleMenu('competences-menu')">
+                Compétences R&T <span class="arrow">▶</span>
+            </button>
+            <div class="menu-content" id="competences-menu">
+                <div class="submenu-item" onclick="showSection('comp-administrer')">Administrer réseaux</div>
+                <div class="submenu-item" onclick="showSection('comp-connecter')">Connecter entreprises</div>
+                <div class="submenu-item" onclick="showSection('comp-creer')">Créer outils RT</div>
+                <div class="submenu-item" onclick="showSection('comp-securiser')">Sécuriser SI</div>
+            </div>
+        </div>
+
+        <div class="menu-item">
+            <button class="menu-toggle" onclick="toggleMenu('sae-menu')">
+                Apprentissage SAÉ <span class="arrow">▶</span>
+            </button>
+            <div class="menu-content" id="sae-menu">
+                <div class="submenu-item" onclick="showSection('sae-s1')">SAÉ Semestre 1</div>
+                <div class="submenu-item" onclick="showSection('sae-s2')">SAÉ Semestre 2</div>
+                <div class="submenu-item" onclick="showSection('sae-s3')">SAÉ Semestre 3</div>
+                <div class="submenu-item" onclick="showSection('sae-s4')">SAÉ Semestre 4</div>
+            </div>
+        </div>
+
+        <div class="menu-item">
+            <button class="menu-toggle" onclick="toggleMenu('projection-menu')">
+                Projection <span class="arrow">▶</span>
+            </button>
+            <div class="menu-content" id="projection-menu">
+                <div class="submenu-item" onclick="showSection('bilan-global')">Bilan global</div>
+                <div class="submenu-item" onclick="showSection('perspectives')">Perspectives</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <!-- Page de garde -->
+        <div class="content-section active" id="page-garde">
+            <div class="section-header">
+                <h1 class="section-title">Portfolio BUT Réseaux et Télécommunications</h1>
+                <p class="section-subtitle">Développement des compétences professionnelles</p>
+            </div>
+            <div class="content-card">
+                <h3 class="card-title">Bienvenue dans mon Portfolio</h3>
+                <p>Ce portfolio documente ma trajectoire de développement dans le cadre de ma formation BUT Réseaux et Télécommunications. Il présente mes progrès, mes réalisations et ma réflexion sur l'acquisition des quatre compétences fondamentales du référentiel R&T.</p>
+                <br>
+                <p><strong>Objectifs du portfolio :</strong></p>
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li>Devenir acteur de ma formation</li>
+                    <li>Développer ma capacité de réflexion</li>
+                    <li>Acquérir de l'autonomie</li>
+                    <li>Réguler ma démarche d'apprentissage</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Description personnelle - Profil -->
+        <div class="content-section" id="profil">
+            <div class="section-header">
+                <h1 class="section-title">Mon Profil</h1>
+                <p class="section-subtitle">Qui suis-je ?</p>
+            </div>
+            <div class="content-card">
+                <div class="profile-section">
+                    <div class="profile-image">👨‍💻</div>
+                    <div>
+                        <h3 class="card-title">Votre Nom</h3>
+                        <p><strong>Formation :</strong> BUT Réseaux et Télécommunications</p>
+                        <p><strong>Année :</strong> [Votre année d'étude]</p>
+                        <p><strong>Établissement :</strong> [Nom de votre IUT]</p>
+                        <br>
+                        <p>Passionné par les technologies réseau et les télécommunications, je développe mes compétences dans l'administration des systèmes, la sécurité informatique et la création d'outils dédiés aux réseaux et télécommunications.</p>
+                        <br>
+                        <p><em>Personnalisez cette section avec vos informations personnelles, votre photo et votre présentation.</em></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Parcours scolaire -->
+        <div class="content-section" id="parcours">
+            <div class="section-header">
+                <h1 class="section-title">Parcours Scolaire</h1>
+                <p class="section-subtitle">Mon cheminement académique</p>
+            </div>
+            <div class="content-card">
+                <h3 class="card-title">Formation actuelle</h3>
+                <p><strong>BUT Réseaux et Télécommunications</strong> - [Années]</p>
+                <p>[Nom de l'IUT], [Ville]</p>
+                <p>Formation axée sur l'acquisition de 4 compétences clés dans le domaine des réseaux et télécommunications.</p>
+            </div>
+            <div class="content-card">
+                <h3 class="card-title">Formation antérieure</h3>
+                <p><em>Ajoutez ici votre parcours scolaire antérieur (Bac, formations précédentes, etc.)</em></p>
+            </div>
+        </div>
+
+        <!-- Objectifs académiques -->
+        <div class="content-section" id="objectifs-academiques">
+            <div class="section-header">
+                <h1 class="section-title">Objectifs Académiques</h1>
+                <p class="section-subtitle">Mes ambitions de formation</p>
+            </div>
+            <div class="content-card">
+                <h3 class="card-title">Objectifs de développement académique</h3>
+                <p>Maîtriser les 4 compétences du référentiel BUT R&T :</p>
+                <div class="competence-grid">
+                    <div class="competence-card">
+                        <div class="competence-title">1. Administrer les réseaux et l'internet</div>
+                        <p>Développer ma capacité à gérer et maintenir les infrastructures réseau.</p>
+                    </div>
+                    <div class="competence-card">
+                        <div class="competence-title">2. Connecter les entreprises et les usages</div>
+                        <p>Comprendre et implémenter les solutions de connectivité adaptées.</p>
+                    </div>
+                    <div class="competence-card">
+                        <div class="competence-title">3. Créer des outils et applications pour les RT</div>
+                        <p>Développer des solutions logicielles spécialisées.</p>
+                    </div>
+                    <div class="competence-card">
+                        <div class="competence-title">4. Administrer un système d'information sécurisé</div>
+                        <p>Maîtriser la sécurité des systèmes d'information.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Objectifs professionnels -->
+        <div class="content-section" id="objectifs-professionnels">
+            <div class="section-header">
+                <h1 class="section-title">Objectifs Professionnels</h1>
+                <p class="section-subtitle">Ma vision de carrière</p>
+            </div>
+            <div class="content-card">
+                <h3 class="card-title">Perspectives professionnelles</h3>
+                <p><em>Décrivez ici vos objectifs professionnels, les métiers visés, vos ambitions de carrière...</em></p>
+                <br>
+                <p><strong>Exemples de métiers visés :</strong></p>
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li>Administrateur réseau</li>
+                    <li>Ingénieur télécommunications</li>
+                    <li>Responsable sécurité informatique</li>
+                    <li>Consultant en réseaux</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Compétences -->
+        <div class="content-section" id="comp-administrer">
+            <div class="section-header">
+                <h1 class="section-title">Administrer les réseaux et l'internet</h1>
+                <p class="section-subtitle">Compétence 1 - Gestion des infrastructures réseau</p>
+            </div>
+            <div class="content-card">
+                <h3 class="card-title">Niveau de maîtrise et progression</h3>
+                <p><em>Décrivez votre niveau actuel de maîtrise de cette compétence et votre progression.</em></p>
+                <br>
+                <h4 style="color: #dc3545; margin-bottom: 10px;">Apprentissages Critiques associés :</h4>
+                <p><em>Listez les apprentissages critiques (AC) que vous avez développés.</em></p>
+            </div>
+            <div class="content-card">
+                <h3 class="card-title">Preuves et traces d'apprentissage</h3>
+                <div class="trace-item">
+                    <strong>Trace 1 :</strong> <em>Décrivez une réalisation concrète</em>
+                </div>
+                <div class="trace-item">
+                    <strong>Trace 2 :</strong> <em>Décrivez une autre réalisation</em>
+                </div>
+            </div>
+        </div>
+
+        <!-- Autres compétences (à dupliquer pour comp-connecter, comp-creer, comp-securiser) -->
+
+        <!-- SAÉ S1 -->
+        <div class="content-section" id="sae-s1">
+            <div class="section-header">
+                <h1 class="section-title">SAÉ Semestre 1</h1>
+                <p class="section-subtitle">Situations d'Apprentissage et d'Évaluation</p>
+            </div>
+            <div class="content-card">
+                <h3 class="card-title">SAÉ 1.01 - [Nom de la SAÉ]</h3>
+                <p><strong>Objectif :</strong> <em>Décrivez l'objectif de cette SAÉ</em></p>
+                <p><strong>Compétence(s) visée(s) :</strong> <em>Indiquez les compétences développées</em></p>
+                <br>
+                <h4 style="color: #dc3545;">Mon positionnement :</h4>
+                <p><em>Analysez votre positionnement sur le niveau de compétence visé en lien avec les apprentissages critiques.</em></p>
+                <br>
+                <h4 style="color: #dc3545;">Traces et preuves :</h4>
+                <div class="trace-item">
+                    <strong>Livrable 1 :</strong> <em>Description du livrable</em>
+                </div>
+                <div class="trace-item">
+                    <strong>Livrable 2 :</strong> <em>Description du livrable</em>
+                </div>
+                <br>
+                <h4 style="color: #dc3545;">Réflexion et auto-évaluation :</h4>
+                <p><em>Analysez vos travaux, évaluez votre acquisition de compétences et identifiez les ajustements nécessaires pour votre progression.</em></p>
+            </div>
+        </div>
+
+        <!-- Autres SAÉ (à dupliquer pour sae-s2, sae-s3, sae-s4) -->
+
+        <!-- Bilan global -->
+        <div class="content-section" id="bilan-global">
+            <div class="section-header">
+                <h1 class="section-title">Bilan Global</h1>
+                <p class="section-subtitle">Évaluation de ma progression</p>
+            </div>
+            <div class="content-card">
+                <h3 class="card-title">Travail accompli et progrès réalisés</h3>
+                <p><em>Faites une évaluation globale de votre portfolio. Prenez conscience du travail accompli et de vos progrès depuis le début de votre formation.</em></p>
+                <br>
+                <h4 style="color: #dc3545;">Points forts identifiés :</h4>
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li><em>Point fort 1</em></li>
+                    <li><em>Point fort 2</em></li>
+                    <li><em>Point fort 3</em></li>
+                </ul>
+                <br>
+                <h4 style="color: #dc3545;">Axes d'amélioration :</h4>
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li><em>Axe d'amélioration 1</em></li>
+                    <li><em>Axe d'amélioration 2</em></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Perspectives -->
+        <div class="content-section" id="perspectives">
+            <div class="section-header">
+                <h1 class="section-title">Perspectives</h1>
+                <p class="section-subtitle">Mes projets futurs</p>
+            </div>
+            <div class="content-card">
+                <h3 class="card-title">Projets et ambitions</h3>
+                <p><em>Décrivez vos projets futurs, vos ambitions professionnelles et personnelles liées à votre formation en R&T.</em></p>
+                <br>
+                <h4 style="color: #dc3545;">À court terme :</h4>
+                <p><em>Objectifs pour les prochains mois/semestres</em></p>
+                <br>
+                <h4 style="color: #dc3545;">À long terme :</h4>
+                <p><em>Vision de carrière et projets professionnels</em></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
