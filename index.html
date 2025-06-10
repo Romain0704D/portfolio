@@ -30,6 +30,7 @@
             color: var(--text-primary);
             line-height: 1.6;
             overflow-x: hidden;
+            position: relative;
         }
 
         /* Navigation */
@@ -56,13 +57,98 @@
             padding: 0 2rem;
         }
 
+        #backgroundCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.5; /* Augmentation de l'opacité générale */
+            pointer-events: none;
+            background: var(--bg-primary);
+            display: block;
+        }
+
         .logo {
             font-size: 1.5rem;
             font-weight: 700;
-            background: linear-gradient(135deg, var(--accent-primary), var(--accent-light));
+            position: relative;
+            cursor: pointer;
+            color: var(--text-primary);
+        }
+
+        /* Nouvel effet de soulignement dynamique */
+        .logo::before {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-light));
+            transform-origin: right;
+            transform: scaleX(0);
+            transition: transform 0.5s ease;
+        }
+
+        .logo:hover::before {
+            transform-origin: left;
+            transform: scaleX(1);
+        }
+
+        /* Effet de texte dynamique */
+        @keyframes textShine {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .logo {
+            background: linear-gradient(
+                120deg,
+                var(--text-primary) 0%,
+                var(--accent-primary) 25%,
+                var(--accent-light) 50%,
+                var(--accent-primary) 75%,
+                var(--text-primary) 100%
+            );
+            background-size: 200% auto;
+            color: transparent;
             -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
             background-clip: text;
+            animation: textShine 5s linear infinite;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            position: relative;
+            display: inline-block;
+        }
+
+        /* Effet de particules scintillantes */
+        .logo::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(
+                circle at var(--x, 50%) var(--y, 50%),
+                rgba(255, 255, 255, 0.2) 0%,
+                transparent 50%
+            );
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .logo:hover::after {
+            opacity: 1;
         }
 
         .nav-links {
@@ -528,6 +614,7 @@
     </style>
 </head>
 <body>
+    <canvas id="backgroundCanvas"></canvas>
     <nav class="navbar">
         <div class="nav-container">
             <div class="logo">Portfolio</div>
@@ -756,91 +843,278 @@
     </main>
 
     <script>
-        // Navigation entre les onglets
-        document.addEventListener('DOMContentLoaded', function() {
-            const navLinks = document.querySelectorAll('.nav-link');
-            const tabContents = document.querySelectorAll('.tab-content');
+    // Variables globales pour le canvas et la navigation
+    // Initialisation
+    let canvas, ctx;
+    let points = [];
+    let mouseX = 0;
+    let mouseY = 0;
+    const numberOfPoints = 100;
 
-            navLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    
-                    // Retirer la classe active de tous les liens
-                    navLinks.forEach(l => l.classList.remove('active'));
-                    // Ajouter la classe active au lien cliqué
-                    this.classList.add('active');
-                    
-                    // Cacher tous les contenus
-                    tabContents.forEach(content => content.classList.remove('active'));
-                    // Afficher le contenu correspondant
-                    const targetTab = this.getAttribute('data-tab');
-                    document.getElementById(targetTab).classList.add('active');
-                    
-                    // Déclencher les animations
-                    setTimeout(() => {
-                        animateOnScroll();
-                    }, 100);
-                });
-            });
+    // Classe Point pour l'animation du fond
+    class Point {
+        constructor(width, height) {
+            this.x = Math.random() * width;
+            this.y = Math.random() * height;
+            this.vx = (Math.random() - 0.5) * 0.5;
+            this.vy = (Math.random() - 0.5) * 0.5;
+            this.radius = Math.random() * 1.5;
+        }
 
-            // Animation au scroll
-            function animateOnScroll() {
-                const elements = document.querySelectorAll('.animate-on-scroll');
-                
-                elements.forEach(element => {
-                    const elementTop = element.getBoundingClientRect().top;
-                    const elementVisible = 150;
-                    
-                    if (elementTop < window.innerHeight - elementVisible) {
-                        element.classList.add('visible');
-                    }
-                });
+        update(width, height) {
+            // Influence de la souris
+            const dx = mouseX - this.x;
+            const dy = mouseY - this.y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+            
+            if (distance < 100) {
+                const angle = Math.atan2(dy, dx);
+                this.vx -= Math.cos(angle) * 0.02;
+                this.vy -= Math.sin(angle) * 0.02;
             }
 
-            // Animation initiale
-            animateOnScroll();
-            
-            // Animation au scroll
-            window.addEventListener('scroll', animateOnScroll);
+            // Mise à jour de la position
+            this.x += this.vx;
+            this.y += this.vy;
 
-            // Navbar au scroll
-            window.addEventListener('scroll', function() {
-                const navbar = document.querySelector('.navbar');
-                if (window.scrollY > 50) {
-                    navbar.style.background = 'rgba(15, 15, 15, 0.98)';
-                } else {
-                    navbar.style.background = 'rgba(15, 15, 15, 0.95)';
+            // Rebond sur les bords
+            if (this.x < 0 || this.x > width) this.vx *= -1;
+            if (this.y < 0 || this.y > height) this.vy *= -1;
+
+            // Limitation de la vitesse
+            const maxSpeed = 2;
+            const speed = Math.sqrt(this.vx * this.vx + this.vy * this.vy);
+            if (speed > maxSpeed) {
+                this.vx = (this.vx / speed) * maxSpeed;
+                this.vy = (this.vy / speed) * maxSpeed;
+            }
+        }
+    }
+
+    // Fonctions du canvas
+    function initCanvas() {
+        canvas = document.getElementById('backgroundCanvas');
+        if (!canvas) return;
+        
+        ctx = canvas.getContext('2d', { alpha: false }); // Ajout de alpha: false
+        if (!ctx) return;
+
+        // Définir la taille du canvas en pixels
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        // Initialiser les points et démarrer l'animation
+        initPoints();
+        animate();
+
+        // Gestionnaire d'événements de redimensionnement
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            initPoints();
+        });
+
+        // Gestionnaire d'événements de souris
+        window.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+    }
+
+    function resizeCanvas() {
+        if (!canvas) return;
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
+
+    function initPoints() {
+        points = [];
+        for (let i = 0; i < numberOfPoints; i++) {
+            points.push(new Point(canvas.width, canvas.height));
+        }
+    }
+
+    function setupCanvasEventListeners() {
+        window.addEventListener('resize', () => {
+            resizeCanvas();
+            initPoints();
+        });
+
+        window.addEventListener('mousemove', (e) => {
+            const rect = canvas.getBoundingClientRect();
+            mouseX = e.clientX - rect.left;
+            mouseY = e.clientY - rect.top;
+        });
+    }
+
+    function animate() {
+        if (!ctx || !canvas) return;
+
+        // Fond plus transparent pour mieux voir l'animation
+        ctx.fillStyle = 'rgba(15, 15, 15, 0.2)'; // Fond plus transparent
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        points.forEach(point => point.update(canvas.width, canvas.height));
+
+        // Dessin des connexions avec une meilleure visibilité
+        for (let i = 0; i < points.length; i++) {
+            for (let j = i + 1; j < points.length; j++) {
+                const dx = points[i].x - points[j].x;
+                const dy = points[i].y - points[j].y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+
+                if (distance < 150) {
+                    const opacity = (1 - distance / 150);  // Augmentation de l'opacité
+                    ctx.strokeStyle = `rgba(220, 38, 38, ${opacity})`; // Rouge plus visible
+                    ctx.lineWidth = opacity * 3; // Lignes plus épaisses
+                    
+                    ctx.beginPath();
+                    ctx.moveTo(points[i].x, points[i].y);
+                    ctx.lineTo(points[j].x, points[j].y);
+                    ctx.stroke();
                 }
-            });
+            }
+        }
 
-            // Gestion des sections pliables
-            const sectionTitles = document.querySelectorAll('.section-title[data-toggle]');
-            
-            sectionTitles.forEach(title => {
-                title.addEventListener('click', function() {
-                    const targetId = this.getAttribute('data-toggle') + '-content';
-                    const content = document.getElementById(targetId);
-                    const arrow = this.querySelector('.toggle-arrow');
-                    
-                    // Toggle les classes
-                    this.classList.toggle('collapsed');
-                    content.classList.toggle('collapsed');
-                    
-                    // Animation de la flèche
-                    if (this.classList.contains('collapsed')) {
-                        arrow.style.transform = 'rotate(-90deg)';
-                    } else {
-                        arrow.style.transform = 'rotate(0deg)';
-                    }
-                });
-            });
-            document.querySelectorAll('.project-card[data-project]').forEach(card => {
-                card.addEventListener('click', function() {
-                    const projectId = this.getAttribute('data-project');
-                    window.location.href = `project-template.html?project=${projectId}`;
-                });
+        // Points plus visibles
+        points.forEach(point => {
+            ctx.beginPath();
+            ctx.arc(point.x, point.y, point.radius * 4, 0, Math.PI * 2); // Points plus gros
+            ctx.fillStyle = 'rgba(239, 68, 68, 1)'; // Points complètement opaques
+            ctx.fill();
+
+            // Ajout d'un halo autour des points
+            ctx.beginPath();
+            ctx.arc(point.x, point.y, point.radius * 8, 0, Math.PI * 2);
+            ctx.fillStyle = 'rgba(239, 68, 68, 0.1)';
+            ctx.fill();
+        });
+
+        requestAnimationFrame(animate);
+    }
+
+    // Fonctions de navigation et animation
+    function setupNavigation() {
+        const navLinks = document.querySelectorAll('.nav-link');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                navLinks.forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+                
+                tabContents.forEach(content => content.classList.remove('active'));
+                const targetTab = this.getAttribute('data-tab');
+                document.getElementById(targetTab)?.classList.add('active');
+                
+                setTimeout(animateOnScroll, 100);
             });
         });
+    }
+
+    function setupScrollAnimations() {
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.animate-on-scroll');
+            
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.classList.add('visible');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', animateOnScroll);
+        animateOnScroll(); // Animation initiale
+    }
+
+    function setupNavbarScroll() {
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (navbar) {
+                navbar.style.background = window.scrollY > 50 ? 
+                    'rgba(15, 15, 15, 0.98)' : 
+                    'rgba(15, 15, 15, 0.95)';
+            }
+        });
+    }
+
+    function setupSectionToggles() {
+        const sectionTitles = document.querySelectorAll('.section-title[data-toggle]');
+        
+        sectionTitles.forEach(title => {
+            title.addEventListener('click', function() {
+                const targetId = this.getAttribute('data-toggle') + '-content';
+                const content = document.getElementById(targetId);
+                const arrow = this.querySelector('.toggle-arrow');
+                
+                if (content && arrow) {
+                    this.classList.toggle('collapsed');
+                    content.classList.toggle('collapsed');
+                    arrow.style.transform = this.classList.contains('collapsed') ? 
+                        'rotate(-90deg)' : 'rotate(0deg)';
+                }
+            });
+        });
+    }
+
+    function setupProjectCards() {
+        document.querySelectorAll('.project-card[data-project]').forEach(card => {
+            card.addEventListener('click', function() {
+                const projectId = this.getAttribute('data-project');
+                window.location.href = `project-template.html?project=${projectId}`;
+            });
+        });
+    }
+
+    function setupLogoAnimation() {
+        const logo = document.querySelector('.logo');
+        if (!logo) return;
+
+        // Effet de suivi de la souris
+        logo.addEventListener('mousemove', (e) => {
+            const rect = logo.getBoundingClientRect();
+            const x = ((e.clientX - rect.left) / logo.offsetWidth) * 100;
+            const y = ((e.clientY - rect.top) / logo.offsetHeight) * 100;
+            
+            logo.style.setProperty('--x', `${x}%`);
+            logo.style.setProperty('--y', `${y}%`);
+        });
+
+        // Effet de pulsation aléatoire
+        let scale = 1;
+        let increasing = true;
+        
+        function pulse() {
+            if (increasing) {
+                scale += 0.001;
+                if (scale >= 1.05) increasing = false;
+            } else {
+                scale -= 0.001;
+                if (scale <= 1) increasing = true;
+            }
+            
+            logo.style.transform = `scale(${scale})`;
+            requestAnimationFrame(pulse);
+        }
+
+        pulse();
+    }
+
+    // Initialisation
+    window.addEventListener('load', function() {
+        initCanvas();
+        setupNavigation();
+        setupScrollAnimations();
+        setupNavbarScroll();
+        setupSectionToggles();
+        setupProjectCards();
+        setupLogoAnimation();
+    });
     </script>
 </body>
 </html>
