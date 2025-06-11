@@ -52,6 +52,34 @@
             gap: 2rem;
         }
 
+        .conclusion-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            color: #fff;
+            background: linear-gradient(135deg, rgba(220,38,38,0.13), rgba(239,68,68,0.10)); /* Rouge foncé uni */
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        .conclusion-table th,
+        .conclusion-table td {
+            background: linear-gradient(135deg, rgba(220,38,38,0.13), rgba(239,68,68,0.10)); /* Même rouge foncé PARTOUT */
+            color: #fff;
+            border: none;
+        }
+        .conclusion-table thead th {
+            background: #361414; /* Gris foncé pour l’en-tête */
+            color: #fff;
+            font-weight: bold;
+        }
+        .conclusion-table tr {
+            border: none;
+        }
+        .conclusion-table tbody tr {
+            border-top: 1px solid rgba(255,255,255,0.10);
+        }
+
         .logo {
             background: linear-gradient(
                 120deg,
@@ -133,7 +161,7 @@
 
         /* Project Details Styles */
         .project-header {
-            background: linear-gradient(135deg, rgba(139, 21, 56, 0.1), rgba(166, 30, 77, 0.05));
+            background: rgba(220, 38, 38, 0.10);
             border-radius: 20px;
             padding: 3rem 2rem;
             margin-bottom: 3rem;
@@ -183,7 +211,7 @@
         }
 
         .project-section {
-            background: var(--bg-card);
+            background: linear-gradient(135deg, rgba(220,38,38,0.13), rgba(239,68,68,0.10));
             border-radius: 20px;
             padding: 2.5rem;
             margin-bottom: 2rem;
@@ -496,8 +524,8 @@
                     Ce projet fut l'occasion de consolider mes compétences en développement web, d'approfondir ma réflexion critique sur le référentiel, et de m'adapter aux contraintes réelles du terrain.
                 </p>
                 <!-- Tableau des problèmes et solutions -->
-                <div style="overflow-x:auto; margin-bottom:1.5rem;">
-                    <table style="width:100%; border-collapse:collapse; color:var(--text-secondary); background:var(--bg-secondary); border-radius:10px; box-shadow:0 2px 8px rgba(0,0,0,0.05);">
+                <div class="conclusion-table-wrapper" style="overflow-x:auto; margin-bottom:1.5rem;">
+                    <table class="conclusion-table">
                         <thead>
                             <tr style="background:var(--bg-card);">
                                 <th style="padding:1rem; border-bottom:1px solid var(--border); text-align:left;">Problèmes rencontrés</th>
