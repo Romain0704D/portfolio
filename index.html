@@ -1101,7 +1101,11 @@
         document.querySelectorAll('.project-card[data-project]').forEach(card => {
             card.addEventListener('click', function() {
                 const projectId = this.getAttribute('data-project');
-                window.location.href = `project-template.html?project=${projectId}`;
+                if (projectId === 'projet1-sem1') {
+                    window.location.href = 'SAE101.html';
+                } else {
+                    window.location.href = `project-template.html?project=${projectId}`;
+                }
             });
         });
     }
