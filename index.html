@@ -224,10 +224,10 @@
 
         /* Carte de profil */
         .profile-card {
-            background: var(--bg-card);
             border-radius: 20px;
             padding: 2.5rem;
             border: 1px solid var(--border);
+            background: linear-gradient(135deg, rgba(139, 21, 56, 0.1), rgba(166, 30, 77, 0.05));
             margin-bottom: 3rem;
             backdrop-filter: blur(10px);
             transition: all 0.3s ease;
@@ -329,6 +329,7 @@
         .hero {
             text-align: center;
             padding: 4rem 0;
+            border: 1px solid var(--border);
             background: linear-gradient(135deg, rgba(139, 21, 56, 0.1), rgba(166, 30, 77, 0.05));
             border-radius: 20px;
             margin-bottom: 3rem;
@@ -353,7 +354,7 @@
         }
 
         .presentation-card {
-            background: var(--bg-card);
+            background: linear-gradient(135deg, rgba(139, 21, 56, 0.1), rgba(166, 30, 77, 0.05));
             border-radius: 20px;
             padding: 3rem;
             border: 1px solid var(--border);
@@ -375,7 +376,7 @@
         }
 
         .skill-card {
-            background: var(--bg-card);
+            background: linear-gradient(135deg, rgba(139, 21, 56, 0.1), rgba(166, 30, 77, 0.05));
             border-radius: 15px;
             padding: 2rem;
             border: 1px solid var(--border);
@@ -474,7 +475,7 @@
         }
 
         .project-card {
-            background: var(--bg-card);
+            background: linear-gradient(135deg, rgba(139, 21, 56, 0.1), rgba(166, 30, 77, 0.05));
             border-radius: 15px;
             padding: 2rem;
             border: 1px solid var(--border);
@@ -633,7 +634,7 @@
             <div class="container">
                 <div class="hero animate-on-scroll">
                     <h1>Bienvenue sur mon Portfolio</h1>
-                    <p>Découvrez mon parcours, mes compétences et mes projets dans le domaine du développement et de la technologie.</p>
+                    <p>Découvrez mon parcours, mes compétences et mes projets au cours de mes formations & ma vie professionnelle</p>
                 </div>
                 
                 <!-- Carte de profil -->
@@ -643,16 +644,16 @@
                             <img src="photo pp.jpg" alt="Photo de profil" style="width: 120px; height: 120px; object-fit: cover; border-radius: 50%;">
                         </div>
                         <div class="profile-info">
-                            <h2 class="profile-name">Prénom NOM</h2>
-                            <p class="profile-title">Étudiant en Informatique</p>
+                            <h2 class="profile-name">Romain DUBOC</h2>
+                            <p class="profile-title">Étudiant en Réseau & en Télécommunication</p>
                             <div class="profile-contact">
-                                <div class="contact-item">
+                                <div class="contact-item" data-copy="romain07.duboc@gmail.com" title="Cliquer pour copier l'email">
                                     <span class="contact-icon">📧</span>
-                                    <span>prenom.nom@email.com</span>
+                                    <span class="contact-value">romain07.duboc@gmail.com</span>
                                 </div>
-                                <div class="contact-item">
+                                <div class="contact-item" data-copy="+33 6 33 45 82 97" title="Cliquer pour copier le numéro">
                                     <span class="contact-icon">📱</span>
-                                    <span>+33 6 12 34 56 78</span>
+                                    <span class="contact-value">+33 6 33 45 82 97</span>
                                 </div>
                                 <div class="contact-item">
                                     <span class="contact-icon">📍</span>
@@ -660,7 +661,9 @@
                                 </div>
                                 <div class="contact-item">
                                     <span class="contact-icon">💼</span>
-                                    <span>linkedin.com/in/prenom-nom</span>
+                                    <a href="https://linkedin.com/in/romain-duboc-3a736a360" class="contact-value" target="_blank" rel="noopener" style="color:inherit; text-decoration:underline; cursor:pointer;">
+                                        linkedin.com/in/romain-duboc-3a736a360
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -670,9 +673,7 @@
                 <div class="presentation-card animate-on-scroll">
                     <h2 style="color: var(--accent-light); margin-bottom: 1.5rem; font-size: 2rem;">Présentation Personnelle</h2>
                     <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-secondary);">
-                        Passionné par le développement informatique et les nouvelles technologies, je suis actuellement étudiant 
-                        en informatique. Mon parcours m'a permis d'acquérir une solide base technique tout en développant 
-                        ma créativité et mon esprit d'innovation.
+                        Étudiant en BUT Réseaux & Télécommunications à l'IUT d'Ifs, je suis passionné par les technologies de l'information et la cybersécurité. Actuellement en cours de formation CCNA Cisco, je développe mes compétences techniques à travers divers projets pratiques allant de la création de sites web à la configuration d'infrastructures réseau, en passant par la programmation Python et la sensibilisation à la cybersécurité. Doté d'un excellent sens de l'organisation et d'une forte capacité d'adaptation, je sais gérer le stress et travailler efficacement en équipe. Ma curiosité naturelle pour la mécanique automobile et motocycliste, ainsi que ma pratique sportive, reflètent mon goût pour les défis techniques et la persévérance. Avec un niveau d'anglais B2 et une approche responsable du travail, je suis déterminé à contribuer activement au domaine des réseaux et télécommunications tout en continuant à enrichir mes connaissances.
                     </p>
                     <br>
                     <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-secondary);">
@@ -685,35 +686,56 @@
         </div>
 
         <!-- Compétences -->
+        <!-- Compétences -->
         <div id="competences" class="tab-content">
             <div class="container">
-                <h2 class="section-title">Mes Compétences</h2>
-                <div class="skills-grid">
-                    <div class="skill-card animate-on-scroll">
-                        <h3>Développement Web</h3>
-                        <p>HTML5, CSS3, JavaScript, React, Node.js</p>
-                    </div>
-                    <div class="skill-card animate-on-scroll">
-                        <h3>Langages de Programmation</h3>
-                        <p>Python, Java, C++, PHP</p>
-                    </div>
-                    <div class="skill-card animate-on-scroll">
-                        <h3>Bases de Données</h3>
-                        <p>MySQL, PostgreSQL, MongoDB</p>
-                    </div>
-                    <div class="skill-card animate-on-scroll">
-                        <h3>Outils & Frameworks</h3>
-                        <p>Git, Docker, Spring Boot, Django</p>
-                    </div>
-                    <div class="skill-card animate-on-scroll">
-                        <h3>Design & UI/UX</h3>
-                        <p>Figma, Adobe XD, Responsive Design</p>
-                    </div>
-                    <div class="skill-card animate-on-scroll">
-                        <h3>Gestion de Projet</h3>
-                        <p>Agile, Scrum, Trello, Notion</p>
-                    </div>
+              <h2 class="section-title">Mes Compétences</h2>
+              <div class="skills-grid">
+                <div class="skill-card animate-on-scroll">
+                  <h3>Électricité & Systèmes numériques</h3>
+                  <ul>
+                    <li>Lois fondamentales de l’électricité</li>
+                    <li>Architecture des systèmes numériques, codage et transmission de l’information</li>
+                  </ul>
                 </div>
+                <div class="skill-card animate-on-scroll">
+                  <h3>Réseaux & Internet</h3>
+                  <ul>
+                    <li>Principes et configuration d’un réseau local (LAN)</li>
+                    <li>Administration, installation de postes clients & ToIP</li>
+                    <li>Déploiement de supports de transmission</li>
+                  </ul>
+                </div>
+                <div class="skill-card animate-on-scroll">
+                  <h3>Systèmes & Programmation</h3>
+                  <ul>
+                    <li>Interaction et configuration des OS pour les réseaux</li>
+                    <li>Lire, corriger et traduire des programmes/algorithmes</li>
+                  </ul>
+                </div>
+                <div class="skill-card animate-on-scroll">
+                  <h3>Analyse & Communication</h3>
+                  <ul>
+                    <li>Mesure et analyse des signaux et transmissions</li>
+                    <li>Identifier et signaler les dysfonctionnements</li>
+                    <li>Adapter sa communication à l’interlocuteur</li>
+                  </ul>
+                </div>
+                <div class="skill-card animate-on-scroll">
+                  <h3>Web & Données</h3>
+                  <ul>
+                    <li>Architecture d’un site web, choix des technologies</li>
+                    <li>Gestion des données adaptée au développement</li>
+                  </ul>
+                </div>
+                <div class="skill-card animate-on-scroll">
+                  <h3>Outils & Collaboration</h3>
+                  <ul>
+                    <li>Utilisation des outils informatiques</li>
+                    <li>S’intégrer et collaborer en équipe projet</li>
+                  </ul>
+                </div>
+              </div>
             </div>
         </div>
 
@@ -721,11 +743,11 @@
         <div id="projets" class="tab-content">
             <div class="container">
                 <div class="projects-section">
-                    <h2 class="section-title" data-toggle="semester1">
+                    <h2 class="section-title collapsed" data-toggle="semester1">
                         <span>1er Semestre</span>
                         <span class="toggle-arrow">▼</span>
                     </h2>
-                    <div class="projects-content" id="semester1-content">
+                    <div class="projects-content collapsed" id="semester1-content">
                         <div class="projects-grid">
                             <div class="project-card animate-on-scroll" data-project="projet1-sem1">
                                 <span class="project-number">Projet 1</span>
@@ -757,11 +779,11 @@
                 </div>
 
                 <div class="projects-section">
-                    <h2 class="section-title" data-toggle="semester2">
+                    <h2 class="section-title collapsed" data-toggle="semester2">
                         <span>2ème Semestre</span>
                         <span class="toggle-arrow">▼</span>
                     </h2>
-                    <div class="projects-content" id="semester2-content">
+                    <div class="projects-content collapsed" id="semester2-content">
                         <div class="projects-grid">
                             <div class="project-card animate-on-scroll">
                                 <span class="project-number">Projet 1</span>
@@ -840,6 +862,22 @@
     </main>
 
     <script>
+
+    document.querySelectorAll('.contact-item[data-copy]').forEach(item => {
+        item.addEventListener('click', function() {
+            const value = this.getAttribute('data-copy');
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText(value).then(() => {
+                    // Affichage d'un feedback temporaire
+                    const old = this.querySelector('.contact-value').textContent;
+                    this.querySelector('.contact-value').textContent = 'Copié !';
+                    setTimeout(() => {
+                        this.querySelector('.contact-value').textContent = old;
+                    }, 1200);
+                });
+            }
+        });
+    });    
     // Variables globales pour le canvas et la navigation
     // Initialisation
     let canvas, ctx;
