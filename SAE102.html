@@ -480,24 +480,23 @@
             <!-- En-tête du projet -->
             <div class="project-header animate-fade-up">
                 <span class="project-semester">1er Semestre</span>
-                <h1 class="project-title">Se sensibiliser à l'hygiène informatique et à la cybersécurité</h1>
+                <h1 class="project-title">S'initier aux réseaux informatiques</h1>
                 <div class="project-meta">
                     <div class="meta-item">
                         <span>📅 Date :</span>
-                        <span>Octobre 2024</span>
+                        <span>Novembre 2024</span>
                     </div>
                     <div class="meta-item">
                         <span>⏱️ Durée :</span>
-                        <span>17 Heures</span>
+                        <span>20 Heures</span>
                     </div>
                     <div class="meta-item">
                         <span>👥 Équipe :</span>
-                        <span>Projet individuel & collectif</span>
+                        <span>Projet collectif</span>
                     </div>
                 </div>
                 <p class="project-description">
-                    Auto-formation individuelle au MOOC de l'ANSSI, travail de recherche en groupe sur des thématiques
-                    de cybersécurité, et mise en pratique via un TP de découverte style "Capture the Flag".
+                    Mise en œuvre d'un prototype de réseau informatique sécurisé pour la société Fibre&Company, incluant la configuration d'équipements réseau, la virtualisation de services et l'implémentation de mesures de sécurité.
                 </p>
             </div>
 
@@ -507,45 +506,72 @@
                 <ul style="list-style: none; padding-left: 1rem;">
                     <li style="margin-bottom: 1rem; position: relative; padding-left: 1.5rem;">
                         <span style="position: absolute; left: 0; color: var(--accent-primary);">▸</span>
-                        Obtenir une bonne hygiène de l'utilisation des services numériques
+                        Concevoir et implémenter un réseau informatique sécurisé avec VLANs
                     </li>
                     <li style="margin-bottom: 1rem; position: relative; padding-left: 1.5rem;">
                         <span style="position: absolute; left: 0; color: var(--accent-primary);">▸</span>
-                        Être capable de former des utilisateurs non spécialistes aux bonnes pratiques
+                        Configurer des équipements réseau (commutateurs L2/L3, routeur)
                     </li>
                     <li style="margin-bottom: 1rem; position: relative; padding-left: 1.5rem;">
                         <span style="position: absolute; left: 0; color: var(--accent-primary);">▸</span>
-                        Maîtriser les concepts fondamentaux de la cybersécurité
+                        Déployer des services réseau sous Linux Debian (DNS, SMB, Web, TFTP)
+                    </li>
+                    <li style="margin-bottom: 1rem; position: relative; padding-left: 1.5rem;">
+                        <span style="position: absolute; left: 0; color: var(--accent-primary);">▸</span>
+                        Mettre en œuvre des mesures de sécurité réseau et système
                     </li>
                 </ul>
             </section>
 
-            <!-- Travaux réalisés -->
+            <!-- Modification des travaux réalisés -->
             <section class="project-section animate-fade-up">
                 <h2 class="section-title">Travaux réalisés</h2>
                 <div style="margin-bottom: 2rem;">
                     <ul style="list-style: none; padding-left: 0; margin: 0;">
-                        <li style="margin-bottom: 1.2rem;">
-                            <h3 style="color: var(--accent-primary); font-size: 1.08rem; margin-bottom: 0.3rem;">📚 Auto-formation MOOC ANSSI</h3>
-                            <span style="color: var(--text-secondary); font-size: 0.98rem;">
-                                Cours en ligne sur l'hygiène numérique : vidéos, présentations, quiz autour des bonnes pratiques de sécurité informatique.
-                            </span>
-                        </li>
-                        <li style="margin-bottom: 1.2rem;">
-                            <h3 style="color: var(--accent-primary); font-size: 1.08rem; margin-bottom: 0.3rem;">👥 Travail de recherche en groupe — Lot A</h3>
+                        <li style="margin-bottom: 1.5rem;">
+                            <h3 style="color: var(--accent-primary); font-size: 1.08rem; margin-bottom: 0.3rem;">🌐 Configuration réseau</h3>
                             <span style="color: var(--text-secondary); font-size: 0.98rem;">
                                 <ul style="list-style: none; padding-left: 0; margin: 0;">
-                                    <li>• Étude des bonnes pratiques de création et gestion des mots de passe</li>
-                                    <li>• Analyse des attaques par force brute et des méthodes de protection</li>
-                                    <li>• Présentation des gestionnaires de mots de passe et de leur utilité</li>
-                                    <li>• Rédaction d'une notice technique synthétique à destination des utilisateurs</li>
+                                    <li>• Mise en œuvre de VLANs par services (Serveurs: 100, Comptabilité: 120, Administratif: 140, Vente: 160, Supervision: 180, Admin IT: 190)</li>
+                                    <li>• Configuration du protocole RSTP avec commutateur 3750 comme racine</li>
+                                    <li>• Implémentation de liens agrégés entre les 3 commutateurs</li>
+                                    <li>• Routage inter-VLANs et routage statique vers Internet</li>
+                                    <li>• Service DHCP configuré pour tous les VLANs (sauf serveurs)</li>
+                                </ul>
+                            </span>
+                        </li>
+                        <li style="margin-bottom: 1.5rem;">
+                            <h3 style="color: var(--accent-primary); font-size: 1.08rem; margin-bottom: 0.3rem;">🖥️ Services système Linux</h3>
+                            <span style="color: var(--text-secondary); font-size: 0.98rem;">
+                                <ul style="list-style: none; padding-left: 0; margin: 0;">
+                                    <li>• Installation et configuration d'une VM Debian 12 (3 disques, partitionnement spécifique)</li>
+                                    <li>• Création automatisée des comptes utilisateurs avec mots de passe générés</li>
+                                    <li>• Service cache DNS (Bind9) pour résolution locale</li>
+                                    <li>• Serveur SMB pour partage de fichiers avec authentification</li>
+                                    <li>• Serveur web Nginx avec site personnel</li>
+                                    <li>• Service TFTP pour stockage des configurations réseau</li>
+                                </ul>
+                            </span>
+                        </li>
+                        <li style="margin-bottom: 1.5rem;">
+                            <h3 style="color: var(--accent-primary); font-size: 1.08rem; margin-bottom: 0.3rem;">🔒 Sécurisation</h3>
+                            <span style="color: var(--text-secondary); font-size: 0.98rem;">
+                                <ul style="list-style: none; padding-left: 0; margin: 0;">
+                                    <li>• Protection contre les tempêtes de broadcast et le remplissage de table CAM</li>
+                                    <li>• VLAN 999 pour ports non utilisés et comme VLAN natif</li>
+                                    <li>• Désactivation des accès Telnet/HTTP, configuration SSH avec clés</li>
+                                    <li>• Implémentation SSH conforme aux recommandations ANSSI</li>
                                 </ul>
                             </span>
                         </li>
                         <li>
-                            <h3 style="color: var(--accent-primary); font-size: 1.08rem; margin-bottom: 0.3rem;">🏴‍☠️ TP Capture the Flag</h3>
+                            <h3 style="color: var(--accent-primary); font-size: 1.08rem; margin-bottom: 0.3rem;">🧪 Tests et validation</h3>
                             <span style="color: var(--text-secondary); font-size: 0.98rem;">
-                                Mise en pratique des connaissances acquises à travers des défis de sécurité informatique et de découverte de vulnérabilités.
+                                <ul style="list-style: none; padding-left: 0; margin: 0;">
+                                    <li>• Tests de débit avec Iperf3 (TCP/UDP, différentes tailles de paquets)</li>
+                                    <li>• Validation du fonctionnement des liens agrégés</li>
+                                    <li>• Vérification de tous les services implémentés avec captures d'écran</li>
+                                </ul>
                             </span>
                         </li>
                     </ul>
@@ -566,7 +592,23 @@
                         <tbody>
                             <tr>
                                 <td style="padding:0.8rem; border-bottom:1px solid var(--border);">
+                                    AC11.01 Maîtriser les lois fondamentales de l’électricité afin d’intervenir sur des équipements de réseaux et télécommunications
+                                </td>
+                                <td style="padding:0.8rem; border-bottom:1px solid var(--border);">
+                                    En cours d'acquisition
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding:0.8rem; border-bottom:1px solid var(--border);">
                                     AC11.02 Comprendre l’architecture et les fondements des systèmes numériques et les principes du code de l’information, des réseaux et de l’Internet
+                                </td>
+                                <td style="padding:0.8rem; border-bottom:1px solid var(--border);">
+                                    En cours d'acquisition
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding:0.8rem; border-bottom:1px solid var(--border);">
+                                    AC11.03 Configurer les fonctions de base du réseau local
                                 </td>
                                 <td style="padding:0.8rem; border-bottom:1px solid var(--border);">
                                     Acquis
@@ -577,15 +619,23 @@
                                     AC11.04 Maîtriser les rôles et principes fondamentaux des systèmes d’exploitation afin d’interagir avec ceux-ci pour la configuration et l’administration des réseaux et services fournis
                                 </td>
                                 <td style="padding:0.8rem; border-bottom:1px solid var(--border);">
+                                    En cours d'acquisition
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding:0.8rem; border-bottom:1px solid var(--border);">
+                                    AC11.05 Identifier les dysfonctionnements du réseau local et savoir les signaler
+                                </td>
+                                <td style="padding:0.8rem; border-bottom:1px solid var(--border);">
                                     Acquis
                                 </td>
                             </tr>
                             <tr>
                                 <td style="padding:0.8rem;">
-                                    AC11.05 Identifier les dysfonctionnements du réseau local et savoir les signaler
+                                    AC11.06 Installer un poste client, expliquer la procédure mise en place
                                 </td>
                                 <td style="padding:0.8rem;">
-                                    Acquis
+                                    En cours d'acquisition
                                 </td>
                             </tr>
                         </tbody>
@@ -593,70 +643,72 @@
                 </div>
             </section>
 
-            <!-- Résultat du projet -->
+            <!-- Modification du travail individuel produit -->
             <section class="project-section animate-fade-up">
                 <h2 class="section-title">Travail individuel produit</h2>
                 <ul style="list-style: none; padding-left: 1rem;">
                     <li style="margin-bottom: 1rem; position: relative; padding-left: 1.5rem;">
                         <span style="position: absolute; left: 0; color: var(--accent-primary);">▸</span>
-                        Création d'un script Python pour émuler une attaque par force brute sur des mots de passe (démonstration pédagogique)
+                        Configuration complète des switchs Cisco (VLANs, trunk, sécurité, SSH)
                     </li>
                     <li style="margin-bottom: 1rem; position: relative; padding-left: 1.5rem;">
                         <span style="position: absolute; left: 0; color: var(--accent-primary);">▸</span>
-                        Réalisation de diapositives et présentation orale pour vulgariser les bonnes pratiques de cybersécurité
+                        Réalisation de l’architecture réseau détaillée (schéma, plan d’adressage)
                     </li>
                     <li style="margin-bottom: 1rem; position: relative; padding-left: 1.5rem;">
                         <span style="position: absolute; left: 0; color: var(--accent-primary);">▸</span>
-                        Participation active au TP "Capture the Flag" pour mettre en pratique les notions apprises
+                        Documentation des fichiers de configuration des switchs et du routeur
+                    </li>
+                    <li style="margin-bottom: 1rem; position: relative; padding-left: 1.5rem;">
+                        <span style="position: absolute; left: 0; color: var(--accent-primary);">▸</span>
+                        Analyse des performances réseau (tests Iperf3, captures Wireshark)
+                    </li>
+                    <li style="margin-bottom: 1rem; position: relative; padding-left: 1.5rem;">
+                        <span style="position: absolute; left: 0; color: var(--accent-primary);">▸</span>
+                        Rapport technique sur la sécurisation et la validation des services déployés
                     </li>
                 </ul>
             </section>
 
-            <!-- Preuves (anciennement Galerie) -->
+            <!-- Modification des preuves -->
             <section class="project-section animate-fade-up">
                 <h2 class="section-title">Preuves</h2>
                 <div style="margin-top:2rem; width:100%;">
                     <details class="custom-details">
                         <summary>
-                            <span style="font-size:1.7rem;">📄</span> Consulter le PDF MOOC-ANSSI
+                            <span style="font-size:1.7rem;">📄</span> Consulter la configuration Debian (ConfDebian102.pdf)
                             <span class="arrow"></span>
                         </summary>
-                        <iframe src="SAE101/MOOC-ANSSI.pdf#toolbar=0" width="100%" height="600" style="border:none; border-radius:0 0 8px 8px; background:#111a; display:block;"></iframe>
+                        <iframe src="SAE102/ConfDebian102.pdf#toolbar=0" width="100%" height="600" style="border:none; border-radius:0 0 8px 8px; background:#111a; display:block;"></iframe>
                     </details>
                     <details class="custom-details">
                         <summary>
-                            <span style="font-size:1.7rem;">📄</span> Consulter le PDF CTF
+                            <span style="font-size:1.7rem;">🗺️</span> Consulter le schéma logique (SchemaLogiqueSAE102.pdf)
                             <span class="arrow"></span>
                         </summary>
-                        <iframe src="SAE101/CTF.pdf#toolbar=0" width="100%" height="600" style="border:none; border-radius:0 0 8px 8px; background:#111a; display:block;"></iframe>
+                        <iframe src="SAE102/SchemaLogiqueSAE102.pdf#toolbar=0" width="100%" height="600" style="border:none; border-radius:0 0 8px 8px; background:#111a; display:block;"></iframe>
                     </details>
                     <details class="custom-details">
                         <summary>
-                            <span style="font-size:1.7rem;">📄</span> Consulter la Notice technique (PDF)
+                            <span style="font-size:1.7rem;">🗺️</span> Consulter le schéma physique (SchemaPhysiqueSAE102.pdf)
                             <span class="arrow"></span>
                         </summary>
-                        <iframe src="SAE101/Notice-SAE-101.pdf#toolbar=0" width="100%" height="600" style="border:none; border-radius:0 0 8px 8px; background:#111a; display:block;"></iframe>
+                        <iframe src="SAE102/SchemaPhysiqueSAE102.pdf#toolbar=0" width="100%" height="600" style="border:none; border-radius:0 0 8px 8px; background:#111a; display:block;"></iframe>
                     </details>
                     <details class="custom-details">
                         <summary>
-                            <span style="font-size:1.7rem;">💻</span> Consulter le script Python bruteforce.py
+                            <span style="font-size:1.7rem;">📝</span> Consulter la configuration des switchs (ConfSWSAE102.pdf)
                             <span class="arrow"></span>
                         </summary>
-                        <pre style="width:100%; max-height:400px; overflow:auto; background:#181818cc; color:#fff; border-radius:0 0 8px 8px; border:none; padding:1rem; font-family:monospace; margin-bottom:0;">
-                        <code id="bruteforce-content" class="language-python">// Chargement du script...</code>
-                        </pre>
+                        <iframe src="SAE102/ConfSWSAE102.pdf#toolbar=0" width="100%" height="600" style="border:none; border-radius:0 0 8px 8px; background:#111a; display:block;"></iframe>
                     </details>
                     <details class="custom-details">
                         <summary>
-                            <span style="font-size:1.7rem;">📊</span> Consulter la présentation PowerPoint (DIAPOSAE101.pptx)
+                            <span style="font-size:1.7rem;">📋</span> Consulter le tableau Trello (TrelloSAE102.png)
                             <span class="arrow"></span>
                         </summary>
-                        <div style="padding: 1rem; background: rgba(15,15,15,0.75); border-radius: 0 0 8px 8px;">
-                            <p style="color: var(--text-secondary); margin-bottom: 1rem;">
-                                <a href="SAE101/DIAPOSAE101.pptx" target="_blank" style="color: var(--accent-primary); font-weight: bold; text-decoration: underline;">
-                                    Télécharger ou ouvrir la présentation DIAPOSAE101.pptx
-                                </a>
-                            </p>
+                        <div style="width:100%; background:#181818cc; border-radius:0 0 8px 8px; text-align:center; padding:1rem;">
+                            <img src="SAE102/TrelloSAE102.png" alt="Tableau Trello SAE102" style="max-width:100%; max-height:540px; border-radius:8px; box-shadow:0 2px 8px #0004;">
                         </div>
                     </details>
                 </div>
@@ -668,19 +720,27 @@
                 <ul style="list-style: none; padding-left: 1rem;">
                     <li style="margin-bottom: 1rem; position: relative; padding-left: 1.5rem;">
                         <span style="position: absolute; left: 0; color: var(--accent-primary);">▸</span>
-                        Certification MOOC ANSSI obtenue avec succès
+                        Prototype réseau fonctionnel avec segmentation par VLANs et routage inter-VLANs opérationnel
                     </li>
                     <li style="margin-bottom: 1rem; position: relative; padding-left: 1.5rem;">
                         <span style="position: absolute; left: 0; color: var(--accent-primary);">▸</span>
-                        Notice technique collaborative produite pour chaque lot thématique
+                        Services réseau (DNS, SMB, Web, TFTP) déployés et validés sur Debian 12
                     </li>
                     <li style="margin-bottom: 1rem; position: relative; padding-left: 1.5rem;">
                         <span style="position: absolute; left: 0; color: var(--accent-primary);">▸</span>
-                        Présentation orale réussie devant le groupe de TP
+                        Sécurisation des équipements réseau (SSH, VLANs inactifs, protections L2)
                     </li>
                     <li style="margin-bottom: 1rem; position: relative; padding-left: 1.5rem;">
                         <span style="position: absolute; left: 0; color: var(--accent-primary);">▸</span>
-                        Validation des compétences par QCM final
+                        Documentation technique complète (schémas, configurations, procédures)
+                    </li>
+                    <li style="margin-bottom: 1rem; position: relative; padding-left: 1.5rem;">
+                        <span style="position: absolute; left: 0; color: var(--accent-primary);">▸</span>
+                        Validation des performances réseau par tests Iperf3 et analyses Wireshark
+                    </li>
+                    <li style="margin-bottom: 1rem; position: relative; padding-left: 1.5rem;">
+                        <span style="position: absolute; left: 0; color: var(--accent-primary);">▸</span>
+                        Acquisition de compétences avancées en configuration réseau et administration Linux
                     </li>
                 </ul>
             </section>
@@ -688,37 +748,38 @@
             <!-- Conclusion -->
             <section class="project-section animate-fade-up">
                 <h2 class="section-title">Conclusion</h2>
-                <p style="color: var(--text-secondary); margin-bottom: 1rem;">
-                    Ce projet fut l'occasion de développer une conscience aigüe des enjeux de cybersécurité, d'apprendre à travailler en équipe sur des sujets techniques complexes, et de découvrir les outils et méthodes utilisés par les professionnels de la sécurité informatique.
-                </p>
-                <!-- Tableau des problèmes et solutions -->
-                <div class="conclusion-table-wrapper" style="overflow-x:auto; margin-bottom:1.5rem;">
-                    <table class="conclusion-table">
-                        <thead>
-                            <tr style="background:var(--bg-card);">
-                                <th style="padding:1rem; border-bottom:1px solid var(--border); text-align:left;">Problèmes rencontrés</th>
-                                <th style="padding:1rem; border-bottom:1px solid var(--border); text-align:left;">Solutions apportées</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td style="padding:0.8rem; border-bottom:1px solid var(--border);">Difficulté à concilier travail autonome et coordination de groupe</td>
-                                <td style="padding:0.8rem; border-bottom:1px solid var(--border);">Mise en place d'outils collaboratifs et de réunions régulières</td>
-                            </tr>
-                            <tr>
-                                <td style="padding:0.8rem; border-bottom:1px solid var(--border);">Complexité technique de certains défis CTF</td>
-                                <td style="padding:0.8rem; border-bottom:1px solid var(--border);">Entraide entre étudiants et recherches approfondies</td>
-                            </tr>
-                            <tr>
-                                <td style="padding:0.8rem;">Gestion du temps entre MOOC et travail de groupe</td>
-                                <td style="padding:0.8rem;">Planification rigoureuse et répartition des tâches</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <div>
+                    <p style="color: var(--text-secondary); margin-bottom: 1rem;">
+                        Ce projet fut l'occasion de développer une conscience aigüe des enjeux de cybersécurité, d'apprendre à travailler en équipe sur des sujets techniques complexes, et de découvrir les outils et méthodes utilisés par les professionnels de la sécurité informatique.
+                    </p>
+                    <div class="conclusion-table-wrapper" style="overflow-x:auto; margin-bottom:1.5rem;">
+                        <table class="conclusion-table">
+                            <thead>
+                                <tr style="background:var(--bg-card);">
+                                    <th style="padding:1rem; border-bottom:1px solid var(--border); text-align:left;">Problèmes rencontrés</th>
+                                    <th style="padding:1rem; border-bottom:1px solid var(--border); text-align:left;">Solutions apportées</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td style="padding:0.8rem; border-bottom:1px solid var(--border);">Difficulté à concilier travail autonome et coordination de groupe</td>
+                                    <td style="padding:0.8rem; border-bottom:1px solid var(--border);">Mise en place d'outils collaboratifs et de réunions régulières</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding:0.8rem; border-bottom:1px solid var(--border);">Complexité technique de certains services ou configurations réseau</td>
+                                    <td style="padding:0.8rem; border-bottom:1px solid var(--border);">Entraide entre étudiants, documentation officielle et tests progressifs</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding:0.8rem;">Gestion du temps entre configuration, documentation et validation</td>
+                                    <td style="padding:0.8rem;">Planification rigoureuse et répartition des tâches</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p style="color: var(--text-secondary); font-style:italic;">
+                        <strong>Si c'était à refaire :</strong> Je commencerais la configuration réseau plus tôt pour anticiper les difficultés, et j'organiserais des sessions de validation intermédiaires pour optimiser la production des documents techniques et la robustesse de l'infrastructure.
+                    </p>
                 </div>
-                <p style="color: var(--text-secondary); font-style:italic;">
-                    <strong>Si c'était à refaire :</strong> Je commencerais le MOOC plus tôt pour avoir plus de temps à consacrer aux recherches approfondies, et j'organiserais des sessions de travail collaboratif plus fréquentes pour optimiser la production des notices techniques et mieux préparer l'oral de groupe.
-                </p>
             </section>
         </div>
 
@@ -933,12 +994,12 @@
             // en fonction du projectId
         });
 
-        fetch('SAE101/bruteforce.py')
+        fetch('bruteforce.py')
             .then(r => r.ok ? r.text() : 'Erreur de chargement')
             .then(txt => {
                 const codeBlock = document.getElementById('bruteforce-content');
                 codeBlock.textContent = txt;
-                if (window.Prism) Prism.highlightElement(codeBlock);
+                Prism.highlightElement(codeBlock); // <-- Ajoute cette ligne pour activer la coloration
             })
             .catch(() => {
                 document.getElementById('bruteforce-content').textContent = 'Erreur de chargement';
