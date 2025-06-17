@@ -773,10 +773,13 @@
                                     Étude expérimentale de l’impact des défauts physiques (pliure, coupure, déchirure) sur les câbles réseau : mesures, analyse et rapport technique.
                                 </p>
                             </div>
-                            <div class="project-card animate-on-scroll">
+                            <div class="project-card animate-on-scroll" data-project="projet4-sem1" onclick="window.location.href='SAE104.html'">
                                 <span class="project-number">Projet 4</span>
-                                <h3 style="color: var(--accent-light); margin-bottom: 1rem;">Jeu Python</h3>
-                                <p>Développement d'un jeu interactif en Python avec interface graphique Tkinter.</p>
+                                <span style="display:inline-block; background:var(--accent-primary); color:#fff; font-size:0.85rem; border-radius:8px; padding:2px 10px; margin-bottom:0.7rem; margin-left:0.5rem;">SAE104</span>
+                                <h3 style="color: var(--accent-light); margin-bottom: 1rem;">Création d'un site Internet</h3>
+                                <p>
+                                    Création d’un site web multipages (HTML/CSS), respect des standards d’accessibilité, responsive design, animations CSS et documentation sur GitHub Pages.
+                                </p>
                             </div>
                             <div class="project-card animate-on-scroll">
                                 <span class="project-number">Projet 5</span>
@@ -1116,6 +1119,8 @@
                     window.location.href = 'SAE102.html';
                 } else if (projectId === 'projet3-sem1') {
                     window.location.href = 'SAE103.html';
+                } else if (projectId === 'projet4-sem1') {
+                    window.location.href = 'SAE104.html';
                 } else {
                     window.location.href = `project-template.html?project=${projectId}`;
                 }

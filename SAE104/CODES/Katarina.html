@@ -1,0 +1,80 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap">
+    <link rel="stylesheet" href="styles/styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Katarina</title>
+</head>
+
+<body class="bg">
+
+    <div class="fade" id="fade"></div>
+
+    <header>
+        <div class="logo">
+            <img src="Images/RAST.png" alt="Logo RAST" width="12%" height="12%" class="rast-text">>
+        </div>
+        <div class="txt">
+            <img src="Images/RAST TXT2.png" alt="TXT RAST" width="18%" height="18%">
+        </div>
+    </header>
+
+    <div class="ligne">
+        <img src="Images/boarder_line.png" alt="Ligne" width="100%" height="50%">
+    </div>
+
+    <nav class="navbar">
+        <ul>
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="Musique.html">Musique</a></li>
+            <li><a href="A_propos.html">À propos</a></li>
+        </ul>
+    </nav>
+
+    <div class="zone-texte">
+        <h2 class="titre">Katarina</h2>
+        <p class="description">Katarina est un champion de League of Legends qui se joue principalement sur la ligne du milieu (plus communément appelée, 'midlane' (venant tout droit de l'anglais)). Elle a pour rôle d'être un assassin, donc d'avoir rapidement des éliminations et des ressources afin d'éliminer l'équipe et de terminer la partie rapidement.</p>
+        <p class="description">Katarina n'est pas un champion simple, en effet, elle possède de nombreux défauts comme un début très difficile ainsi qu'une courte durée où elle est puissante (vers le milieu de la partie). De plus, elle est difficile à maîtriser de son 'kit' de compétences très mobile.</p>
+    </div>
+
+    <a href="https://u.gg/lol/champions/katarina/build" target="_blank">
+        <img src='Images/kata1.png' alt="Image 5" class="image-3">
+    </a>
+
+    <a href="https://u.gg/lol/champions/katarina/build" target="_blank">
+        <img src='Images/kata2.png' alt="Image 6" class="image-4">
+    </a>
+
+    <div class="video-container">
+        <iframe width="560" height="315" src="https://www.youtube.com/watch?v=0LXqGaCTH-k" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+
+    <footer>
+        <div class="ligne-rouge"></div>
+    </footer>
+
+    <script>
+        function fadeOut() {
+            const fade = document.getElementById('fade');
+            fade.classList.add('active');
+            setTimeout(() => {
+                window.location.href = fade.getAttribute('data-href');
+            }, 200);
+        }
+        document.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', function (e) {
+                e.preventDefault();
+                const fade = document.getElementById('fade');
+                fade.setAttribute('data-href', this.href); 
+                fadeOut();
+            });
+        });
+    </script>
+
+</body>
+
+</html>
