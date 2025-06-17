@@ -810,8 +810,11 @@
                             </div>
                             <div class="project-card animate-on-scroll" data-project="projet2-sem2">
                                 <span class="project-number">Projet 2</span>
-                                <h3 style="color: var(--accent-light); margin-bottom: 1rem;">API Node.js</h3>
-                                <p>Création d'une API RESTful avec Node.js, Express et authentification JWT.</p>
+                                <span style="display:inline-block; background:var(--accent-primary); color:#fff; font-size:0.85rem; border-radius:8px; padding:2px 10px; margin-bottom:0.7rem; margin-left:0.5rem;">SAE202</span>
+                                <h3 style="color: var(--accent-light); margin-bottom: 1rem;">Mesurer et caractériser un signal ou un système</h3>
+                                <p>
+                                    Découverte de Matlab et du spectre radiofréquence : certification, TP SDR, analyse FM et téléphonie mobile, rédaction de notices et comptes rendus en groupe et binôme.
+                                </p>
                             </div>
                             <div class="project-card animate-on-scroll" data-project="projet3-sem2">
                                 <span class="project-number">Projet 3</span>
@@ -1131,6 +1134,8 @@
                     window.location.href = 'SAE105.html';
                 } else if (projectId === 'projet1-sem2') {
                     window.location.href = 'SAE201.html';
+                } else if (projectId === 'projet2-sem2') {
+                    window.location.href = 'SAE202.html';
                 } else {
                     window.location.href = `project-template.html?project=${projectId}`;
                 }
