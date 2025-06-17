@@ -1,0 +1,205 @@
+!
+
+!
+! Last configuration change at 13:30:31 UTC Wed Jun 11 2025
+!
+version 15.2
+service timestamps debug datetime msec
+service timestamps log datetime msec
+!
+hostname R4
+!
+boot-start-marker
+boot-end-marker
+!
+!
+!
+no aaa new-model
+no ip icmp rate-limit unreachable
+!
+!
+!
+!
+!
+!
+no ip domain lookup
+ip cef
+ipv6 unicast-routing
+ipv6 cef
+!
+!
+multilink bundle-name authenticated
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+ip tcp synwait-time 5
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+interface Loopback0
+ ip address 10.12.1.4 255.255.255.255
+ ipv6 enable
+ ospfv3 1 ipv4 area 0
+!
+interface Port-channel1
+ ip address 10.0.241.2 255.255.255.252
+ no negotiation auto
+ ipv6 enable
+ ospfv3 1 ipv4 area 0
+!
+interface Port-channel3
+ ip address 10.0.141.2 255.255.255.252
+ no negotiation auto
+ ipv6 enable
+ ospfv3 1 ipv4 area 0
+!
+interface Ethernet0/0
+ no ip address
+ shutdown
+ duplex auto
+!
+interface GigabitEthernet0/0
+ bandwidth 1000000
+ ip address 10.0.45.2 255.255.255.252
+ ip nat inside
+ media-type gbic
+ speed 1000
+ duplex full
+ negotiation auto
+ ipv6 enable
+ ospfv3 1 ipv4 area 0
+!
+interface GigabitEthernet1/0
+ no ip address
+ negotiation auto
+ channel-group 1
+!
+interface GigabitEthernet2/0
+ ip address 192.168.111.44 255.255.255.0
+ ip nat outside
+ negotiation auto
+ ipv6 enable
+ ospfv3 1 ipv4 area 0
+!
+interface GigabitEthernet3/0
+ no ip address
+ negotiation auto
+ channel-group 3
+!
+interface GigabitEthernet4/0
+ bandwidth 1000000
+ ip address 10.0.43.1 255.255.255.252
+ ip nat inside
+ negotiation auto
+ ipv6 enable
+ ospfv3 1 ipv4 area 0
+!
+interface FastEthernet5/0
+ no ip address
+ shutdown
+ speed auto
+ duplex auto
+!
+interface FastEthernet5/1
+ no ip address
+ shutdown
+ speed auto
+ duplex auto
+!
+interface Serial6/0
+ no ip address
+ shutdown
+ serial restart-delay 0
+!
+interface Serial6/1
+ no ip address
+ shutdown
+ serial restart-delay 0
+!
+interface Serial6/2
+ no ip address
+ shutdown
+ serial restart-delay 0
+!
+interface Serial6/3
+ no ip address
+ shutdown
+ serial restart-delay 0
+!
+interface Serial6/4
+ no ip address
+ shutdown
+ serial restart-delay 0
+!
+interface Serial6/5
+ no ip address
+ shutdown
+ serial restart-delay 0
+!
+interface Serial6/6
+ no ip address
+ shutdown
+ serial restart-delay 0
+!
+interface Serial6/7
+ no ip address
+ shutdown
+ serial restart-delay 0
+!
+router ospfv3 1
+ router-id 10.12.1.4
+ auto-cost reference-bandwidth 1000
+ !
+ address-family ipv4 unicast
+  redistribute static
+  passive-interface GigabitEthernet2/0
+  default-information originate
+ exit-address-family
+!
+ip nat inside source list NATINSIDE interface GigabitEthernet2/0 overload
+ip forward-protocol nd
+!
+!
+no ip http server
+no ip http secure-server
+ip route 0.0.0.0 0.0.0.0 192.168.111.1
+!
+ip access-list standard NATINSIDE
+ permit 10.0.0.0 0.255.255.255
+!
+!
+!
+!
+control-plane
+!
+!
+line con 0
+ exec-timeout 0 0
+ privilege level 15
+ logging synchronous
+ stopbits 1
+line aux 0
+ exec-timeout 0 0
+ privilege level 15
+ logging synchronous
+ stopbits 1
+line vty 0 4
+ login
+!
+!
+end

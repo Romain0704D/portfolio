@@ -1,0 +1,27 @@
+! Configuration du routeur client
+hostname R-CLIENT
+
+!  
+interface GigabitEthernet0/1  
+description Interface vers WAN GNS3  
+ip address 10.0.0.3 255.255.255.248  
+no shutdown
+
+!  
+interface GigabitEthernet 0/0  
+description Interface vers SW-3750  
+ip address 192.168.100.2 255.255.255.252  
+no shutdown
+
+! Configuration du routage
+ip routing
+
+! Route statique vers les VLANs du LAN
+ ip route 192.168.10.0 255.255.255.224 192.168.100.1
+ ip route 192.168.20.0 255.255.255.192 192.168.100.1
+ ip route 192.168.30.0 255.255.255.192 192.168.100.1
+ ip route 192.168.40.0 255.255.255.192 192.168.100.1
+ ip route 192.168.50.0 255.255.255.224 192.168.100.1
+ ip route 192.168.60.0 255.255.255.224 192.168.100.1
+! Route par défaut vers le WAN
+ip route 0.0.0.0 0.0.0.0 10.0.0.2

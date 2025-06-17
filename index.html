@@ -385,7 +385,9 @@
             overflow: hidden;
         }
 
-        .skill-card::before {
+        .skill-card::before,
+        .project-card::before,
+        .vision-card::before {
             content: '';
             position: absolute;
             top: 0;
@@ -395,15 +397,19 @@
             background: linear-gradient(90deg, var(--accent-primary), var(--accent-light));
             transform: scaleX(0);
             transition: transform 0.3s ease;
+            z-index: 2;
         }
 
-        .skill-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent-primary);
-        }
-
-        .skill-card:hover::before {
+        .skill-card:hover::before,
+        .project-card:hover::before,
+        .vision-card:hover::before {
             transform: scaleX(1);
+        }
+
+        .project-card,
+        .vision-card {
+            position: relative;
+            overflow: hidden;
         }
 
         .skill-card h3 {
@@ -472,6 +478,7 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 2rem;
+            transition: grid-template-columns 0.3s;
         }
 
         .project-card {
@@ -479,43 +486,39 @@
             border-radius: 15px;
             padding: 2rem;
             border: 1px solid var(--border);
-            transition: all 0.3s ease;
+            transition: 
+                all 0.3s cubic-bezier(.46,.03,.52,.96),
+                box-shadow 0.3s cubic-bezier(.46,.03,.52,.96),
+                z-index 0s;
             position: relative;
             overflow: hidden;
-        }
-
-        .project-card::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 100px;
-            height: 100px;
-            background: radial-gradient(circle, rgba(139, 21, 56, 0.1), transparent);
-            border-radius: 50%;
-            transition: all 0.3s ease;
+            z-index: 1;
+            cursor: pointer;
         }
 
         .project-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 25px 50px rgba(139, 21, 56, 0.15);
+            transform: scale(1.08);
+            box-shadow: 0 30px 60px 0 rgba(220,38,38,0.18), 0 1.5px 8px 0 rgba(239,68,68,0.10);
             border-color: var(--accent-primary);
+            z-index: 10;
         }
 
-        .project-card:hover::after {
-            width: 150px;
-            height: 150px;
+        .projects-grid:hover .project-card:not(:hover) {
+            filter: blur(1.5px) grayscale(0.2) brightness(0.92);
+            opacity: 0.7;
+            transform: scale(0.97);
+            z-index: 1;
         }
 
-        .project-number {
-            display: inline-block;
-            background: var(--accent-primary);
-            color: white;
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
+        @media (max-width: 900px) {
+            .project-card:hover {
+                transform: scale(1.03);
+            }
+            .projects-grid:hover .project-card:not(:hover) {
+                filter: none;
+                opacity: 1;
+                transform: scale(1);
+            }
         }
 
         /* Projection */
@@ -826,8 +829,11 @@
                             </div>
                             <div class="project-card animate-on-scroll" data-project="projet4-sem2">
                                 <span class="project-number">Projet 4</span>
-                                <h3 style="color: var(--accent-light); margin-bottom: 1rem;">Système de Gestion</h3>
-                                <p>Conception d'un système de gestion complet avec Java Spring Boot et interface web.</p>
+                                <span style="display:inline-block; background:var(--accent-primary); color:#fff; font-size:0.85rem; border-radius:8px; padding:2px 10px; margin-bottom:0.7rem; margin-left:0.5rem;">SAE204</span>
+                                <h3 style="color: var(--accent-light); margin-bottom: 1rem;">Projet intégratif – Réseaux, Télécoms, Maths & Anglais</h3>
+                                <p>
+                                    Projet final de première année : configuration d’une infrastructure LAN/WAN, mesures spectrales, méthodes mathématiques, rédaction de livrables et soutenance. Travail collectif sur 3 semaines, intégrant toutes les compétences du BUT R&T.
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -840,43 +846,44 @@
             <div class="container">
                 <h2 class="section-title">Projection Professionnelle</h2>
                 <div class="vision-cards">
-                    <div class="vision-card animate-on-scroll">
+                    <div class="vision-card animate-on-scroll" style="background: linear-gradient(135deg, rgba(139, 21, 56, 0.1), rgba(166, 30, 77, 0.05)); border: 1px solid var(--border);">
                         <div class="vision-content">
                             <div class="vision-icon">🎯</div>
                             <h3 style="color: var(--accent-light); margin-bottom: 1.5rem; font-size: 1.5rem;">Objectifs Futurs</h3>
                             <ul style="list-style: none; padding: 0;">
                                 <li style="margin-bottom: 1rem; padding-left: 1.5rem; position: relative;">
                                     <span style="position: absolute; left: 0; color: var(--accent-primary);">▸</span>
-                                    Obtenir un diplôme d'ingénieur en informatique
+                                    Intégrer une école d’ingénieur spécialisée en cybersécurité ou poursuivre un master dans ce domaine
                                 </li>
                                 <li style="margin-bottom: 1rem; padding-left: 1.5rem; position: relative;">
                                     <span style="position: absolute; left: 0; color: var(--accent-primary);">▸</span>
-                                    Se spécialiser en développement full-stack
+                                    Envisager une formation pour devenir militaire dans la cybersécurité (ex : armée de Terre, cyberdéfense)
                                 </li>
                                 <li style="margin-bottom: 1rem; padding-left: 1.5rem; position: relative;">
                                     <span style="position: absolute; left: 0; color: var(--accent-primary);">▸</span>
-                                    Maîtriser les technologies cloud (AWS, Azure)
+                                    Développer une expertise en sécurité des réseaux, systèmes et applications
                                 </li>
                                 <li style="margin-bottom: 1rem; padding-left: 1.5rem; position: relative;">
                                     <span style="position: absolute; left: 0; color: var(--accent-primary);">▸</span>
-                                    Contribuer à des projets open source
+                                    Obtenir des certifications reconnues (ex : CEH, CISSP)
+                                </li>
+                                <li style="margin-bottom: 1rem; padding-left: 1.5rem; position: relative;">
+                                    <span style="position: absolute; left: 0; color: var(--accent-primary);">▸</span>
+                                    Participer à des projets open source ou à des challenges de cybersécurité (CTF)
                                 </li>
                             </ul>
                         </div>
                     </div>
                     
-                    <div class="vision-card animate-on-scroll">
+                    <div class="vision-card animate-on-scroll" style="background: linear-gradient(135deg, rgba(139, 21, 56, 0.1), rgba(166, 30, 77, 0.05)); border: 1px solid var(--border);">
                         <div class="vision-content">
                             <div class="vision-icon">🚀</div>
                             <h3 style="color: var(--accent-light); margin-bottom: 1.5rem; font-size: 1.5rem;">Vision Professionnelle</h3>
                             <p style="line-height: 1.8; color: var(--text-secondary); margin-bottom: 1.5rem;">
-                                Ma vision est de devenir un développeur polyvalent capable de concevoir et 
-                                développer des solutions innovantes qui répondent aux défis technologiques modernes.
+                                Je souhaite devenir un professionnel de la cybersécurité, capable de protéger les systèmes d’information et de répondre aux enjeux actuels de la sécurité numérique.
                             </p>
                             <p style="line-height: 1.8; color: var(--text-secondary);">
-                                Je souhaite rejoindre une équipe dynamique où je pourrai continuer à apprendre, 
-                                partager mes connaissances et contribuer à des projets qui ont un impact positif 
-                                sur la société.
+                                Mon ambition est d’intégrer une équipe spécialisée, d’évoluer dans un environnement stimulant et de contribuer à la sécurité des organisations ou des institutions face aux menaces informatiques, que ce soit dans le secteur civil ou militaire.
                             </p>
                         </div>
                     </div>
@@ -1141,6 +1148,8 @@
                     window.location.href = 'SAE202.html';
                 } else if (projectId === 'projet3-sem2') {
                     window.location.href = 'SAE203.html';
+                } else if (projectId === 'projet4-sem2') {
+                    window.location.href = 'SAE204.html';
                 } else {
                     window.location.href = `project-template.html?project=${projectId}`;
                 }

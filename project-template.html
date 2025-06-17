@@ -406,61 +406,7 @@
             opacity: 1;
             transform: translateY(0);
         }
-
-        .custom-details {
-            margin-bottom: 2rem;
-            border-radius: 8px;
-            border: 1px solid var(--border);
-            background: rgba(15,15,15,0.75); /* fond translucide assombri */
-            transition: box-shadow 0.3s;
-            position: relative;
-        }
-        .custom-details[open] {
-            box-shadow: 0 8px 32px 0 rgba(220,38,38,0.12);
-        }
-        .custom-details summary {
-            cursor: pointer;
-            font-weight: bold;
-            color: var(--accent-primary);
-            font-size: 1.1rem;
-            padding: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            user-select: none;
-            outline: none;
-            border-radius: 8px;
-            background: transparent;
-            position: relative;
-        }
-        .custom-details .arrow {
-            margin-left: auto;
-            width: 24px;
-            height: 24px;
-            display: inline-block;
-            transition: transform 0.3s cubic-bezier(.46,.03,.52,.96);
-            background: none;
-            position: relative;
-        }
-        .custom-details .arrow::after {
-            content: '';
-            display: block;
-            width: 12px;
-            height: 12px;
-            border-right: 3px solid var(--accent-primary);
-            border-bottom: 3px solid var(--accent-primary);
-            border-radius: 2px;
-            transform: rotate(45deg);
-            position: absolute;
-            right: 6px;
-            top: 4px;
-            transition: border-color 0.3s;
-        }
-        .custom-details[open] .arrow {
-            transform: rotate(90deg);
-        }
     </style>
-    <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
 </head>
 <body>
     <canvas id="backgroundCanvas"></canvas>
@@ -479,69 +425,43 @@
         <div class="container">
             <!-- En-tête du projet -->
             <div class="project-header animate-fade-up">
-                <span class="project-semester">2e Semestre</span>
-                <h1 class="project-title">Mesurer et caractériser un signal ou un système</h1>
+                <span class="project-semester">1er Semestre</span>
+                <h1 class="project-title">Site Web Personnel</h1>
                 <div class="project-meta">
                     <div class="meta-item">
                         <span>📅 Date :</span>
-                        <span>Mai 2025</span>
+                        <span>Septembre 2024</span>
                     </div>
                     <div class="meta-item">
                         <span>⏱️ Durée :</span>
-                        <span>22 Heures</span>
+                        <span>4 semaines</span>
                     </div>
                     <div class="meta-item">
                         <span>👥 Équipe :</span>
-                        <span>Travail Collectif</span>
+                        <span>Projet individuel</span>
                     </div>
                 </div>
                 <p class="project-description">
-                    Découverte de Matlab et des outils d’exploration du spectre radiofréquence à travers une certification et des travaux pratiques. Utilisation de Matlab pour piloter des récepteurs SDR, analyser des signaux FM et téléphonie mobile, et production de notices et comptes rendus en groupe et en binôme.
+                    Création d'un site web personnel en utilisant HTML et CSS, avec un design responsive
+                    et des animations modernes pour une expérience utilisateur optimale.
                 </p>
             </div>
 
-            <!-- Objectifs -->
+            <!-- Objectifs du projet -->
             <section class="project-section animate-fade-up">
                 <h2 class="section-title">Objectifs</h2>
                 <ul style="list-style: none; padding-left: 1rem;">
                     <li style="margin-bottom: 1rem; position: relative; padding-left: 1.5rem;">
                         <span style="position: absolute; left: 0; color: var(--accent-primary);">▸</span>
-                        Découvrir et maîtriser les bases de Matlab via une certification en ligne
+                        Concevoir une interface utilisateur moderne et responsive
                     </li>
                     <li style="margin-bottom: 1rem; position: relative; padding-left: 1.5rem;">
                         <span style="position: absolute; left: 0; color: var(--accent-primary);">▸</span>
-                        Utiliser Matlab pour piloter des récepteurs SDR (RTL-SDR, AdalmPluto)
+                        Implémenter des animations CSS avancées
                     </li>
                     <li style="margin-bottom: 1rem; position: relative; padding-left: 1.5rem;">
                         <span style="position: absolute; left: 0; color: var(--accent-primary);">▸</span>
-                        Mesurer, traiter et analyser des signaux radiofréquences (FM, téléphonie mobile)
-                    </li>
-                    <li style="margin-bottom: 1rem; position: relative; padding-left: 1.5rem;">
-                        <span style="position: absolute; left: 0; color: var(--accent-primary);">▸</span>
-                        Réaliser des comptes rendus individuels, en binôme et en groupe
-                    </li>
-                </ul>
-            </section>
-
-            <!-- Travaux réalisés -->
-            <section class="project-section animate-fade-up">
-                <h2 class="section-title">Travaux réalisés</h2>
-                <ul style="list-style: none; padding-left: 1rem;">
-                    <li style="margin-bottom: 1rem; position: relative; padding-left: 1.5rem;">
-                        <span style="position: absolute; left: 0; color: var(--accent-primary);">▸</span>
-                        Certification Matlab sur les concepts de base et prise en main du logiciel
-                    </li>
-                    <li style="margin-bottom: 1rem; position: relative; padding-left: 1.5rem;">
-                        <span style="position: absolute; left: 0; color: var(--accent-primary);">▸</span>
-                        TP Groupe : exploration du spectre FM, analyse des signaux RDS, manipulation de Matlab et du RTL-SDR
-                    </li>
-                    <li style="margin-bottom: 1rem; position: relative; padding-left: 1.5rem;">
-                        <span style="position: absolute; left: 0; color: var(--accent-primary);">▸</span>
-                        TP binôme : chasse au spectre de la téléphonie mobile, cartographie des émetteurs, mesures et analyses sur Matlab
-                    </li>
-                    <li style="margin-bottom: 1rem; position: relative; padding-left: 1.5rem;">
-                        <span style="position: absolute; left: 0; color: var(--accent-primary);">▸</span>
-                        Rédaction de comptes rendus (binôme & groupe)
+                        Optimiser les performances et l'accessibilité
                     </li>
                 </ul>
             </section>
@@ -549,96 +469,33 @@
             <!-- Apprentissage critique du référentiel -->
             <section class="project-section animate-fade-up">
                 <h2 class="section-title">Apprentissage critique du référentiel</h2>
-                <div class="conclusion-table-wrapper" style="overflow-x:auto; margin-bottom:1.5rem;">
-                    <table class="conclusion-table">
-                        <thead>
-                            <tr style="background:var(--bg-card);">
-                                <th style="padding:1rem; border-bottom:1px solid var(--border); text-align:left;">APPRENTISSAGE</th>
-                                <th style="padding:1rem; border-bottom:1px solid var(--border); text-align:left;">COMMENTAIRE</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td style="padding:0.8rem; border-bottom:1px solid var(--border);">
-                                    AC12.01 Mesurer et analyser les signaux
-                                </td>
-                                <td style="padding:0.8rem; border-bottom:1px solid var(--border);">
-                                    En cours d’acquisition
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="padding:0.8rem; border-bottom:1px solid var(--border);">
-                                    AC12.02 Caractériser des systèmes de transmission élémentaire et découvrir la modulation mathématique de leur fonctionnement
-                                </td>
-                                <td style="padding:0.8rem; border-bottom:1px solid var(--border);">
-                                    En cours d’acquisition
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="padding:0.8rem; border-bottom:1px solid var(--border);">
-                                    AC12.03 Déployer des supports de transmission
-                                </td>
-                                <td style="padding:0.8rem; border-bottom:1px solid var(--border);">
-                                    En cours d’acquisition
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="padding:0.8rem;">
-                                    AC12.05 Communiquer avec un tiers (client, collaborateur...) et adapter son discours et sa langue à son interlocuteur
-                                </td>
-                                <td style="padding:0.8rem;">
-                                    Acquis
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+                <p style="color: var(--text-secondary);">
+                    Ce projet m'a permis de confronter la théorie du référentiel à la réalité du développement : certains aspects prévus se sont révélés particulièrement pertinents (comme la gestion de l'accessibilité), tandis que d'autres ont nécessité des adaptations pour répondre aux contraintes concrètes du projet.<br>
+                    Cette expérience a enrichi ma compréhension des compétences attendues et m'a permis de prendre du recul critique sur les attendus du référentiel.
+                </p>
             </section>
 
             <!-- Résultat du projet -->
             <section class="project-section animate-fade-up">
                 <h2 class="section-title">Travail individuel produit</h2>
-                <ul style="list-style: none; padding-left: 1rem;">
-                    <li style="margin-bottom: 1rem; position: relative; padding-left: 1.5rem;">
-                        <span style="position: absolute; left: 0; color: var(--accent-primary);">▸</span>
-                        Certification Matlab obtenue
-                    </li>
-                    <li style="margin-bottom: 1rem; position: relative; padding-left: 1.5rem;">
-                        <span style="position: absolute; left: 0; color: var(--accent-primary);">▸</span>
-                        Spectres FM et téléphonie mobile mesurés et analysés
-                    </li>
-                    <li style="margin-bottom: 1rem; position: relative; padding-left: 1.5rem;">
-                        <span style="position: absolute; left: 0; color: var(--accent-primary);">▸</span>
-                        Notices et comptes rendus produits (individuel, binôme, groupe)
-                    </li>
-                </ul>
+                <p style="color: var(--text-secondary);">
+                    Le projet a abouti à la création d’un site web personnel fonctionnel, esthétique et performant, conforme aux critères de qualité du référentiel. L’interface est moderne, responsive et les animations apportent une expérience utilisateur soignée.
+                </p>
             </section>
 
-            <!-- Preuves -->
+            <!-- Preuves (anciennement Galerie) -->
             <section class="project-section animate-fade-up">
                 <h2 class="section-title">Preuves</h2>
-                <div style="margin-top:2rem; width:100%;">
-                    <details class="custom-details">
-                        <summary>
-                            <span style="font-size:1.7rem;">📄</span> Certificat Matlab (PDF)
-                            <span class="arrow"></span>
-                        </summary>
-                        <iframe src="SAE202/CertifMatLabSAE202.pdf#toolbar=0" width="100%" height="600" style="border:none; border-radius:0 0 8px 8px; background:#111a; display:block;"></iframe>
-                    </details>
-                    <details class="custom-details">
-                        <summary>
-                            <span style="font-size:1.7rem;">📄</span> Compte rendu de groupe (PDF)
-                            <span class="arrow"></span>
-                        </summary>
-                        <iframe src="SAE202/GroupeSAE202.pdf#toolbar=0" width="100%" height="600" style="border:none; border-radius:0 0 8px 8px; background:#111a; display:block;"></iframe>
-                    </details>
-                    <details class="custom-details">
-                        <summary>
-                            <span style="font-size:1.7rem;">📄</span> Compte rendu de binôme (PDF)
-                            <span class="arrow"></span>
-                        </summary>
-                        <iframe src="SAE202/BinomeSAE202.pdf#toolbar=0" width="100%" height="600" style="border:none; border-radius:0 0 8px 8px; background:#111a; display:block;"></iframe>
-                    </details>
+                <div class="project-gallery">
+                    <div class="gallery-item">
+                        <img src="placeholder1.jpg" alt="Capture d'écran de la page d'accueil">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="placeholder2.jpg" alt="Version mobile du site">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="placeholder3.jpg" alt="Section des compétences">
+                    </div>
                 </div>
             </section>
 
@@ -648,15 +505,15 @@
                 <ul style="list-style: none; padding-left: 1rem;">
                     <li style="margin-bottom: 1rem; position: relative; padding-left: 1.5rem;">
                         <span style="position: absolute; left: 0; color: var(--accent-primary);">▸</span>
-                        Certification Matlab validée et notices rendues
+                        Site en ligne et accessible sur tout support (desktop/mobile)
                     </li>
                     <li style="margin-bottom: 1rem; position: relative; padding-left: 1.5rem;">
                         <span style="position: absolute; left: 0; color: var(--accent-primary);">▸</span>
-                        Spectres FM et téléphonie mobile mesurés et analysés
+                        Respect des bonnes pratiques d’UI/UX et d’accessibilité
                     </li>
                     <li style="margin-bottom: 1rem; position: relative; padding-left: 1.5rem;">
                         <span style="position: absolute; left: 0; color: var(--accent-primary);">▸</span>
-                        Travail en groupe et en binôme valorisé par l’auto-évaluation
+                        Utilisation efficace des technologies web modernes
                     </li>
                 </ul>
             </section>
@@ -665,8 +522,9 @@
             <section class="project-section animate-fade-up">
                 <h2 class="section-title">Conclusion</h2>
                 <p style="color: var(--text-secondary); margin-bottom: 1rem;">
-                    Ce projet m’a permis de découvrir concrètement l’utilisation de Matlab pour l’analyse de signaux radiofréquences et de mieux comprendre les dispositifs de transmission autour de nous. Les différents travaux pratiques, la certification et la rédaction des notices m’ont permis de progresser en autonomie et en travail collaboratif. J’ai également pris conscience de l’importance de bien documenter ses démarches pour faciliter les projets à venir.
+                    Ce projet fut l'occasion de consolider mes compétences en développement web, d'approfondir ma réflexion critique sur le référentiel, et de m'adapter aux contraintes réelles du terrain.
                 </p>
+                <!-- Tableau des problèmes et solutions -->
                 <div class="conclusion-table-wrapper" style="overflow-x:auto; margin-bottom:1.5rem;">
                     <table class="conclusion-table">
                         <thead>
@@ -677,29 +535,26 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td style="padding:0.8rem; border-bottom:1px solid var(--border);">
-                                    Difficultés à manipuler Matlab et à comprendre certains scripts
-                                </td>
-                                <td style="padding:0.8rem; border-bottom:1px solid var(--border);">
-                                    Prise en main progressive, échanges avec le groupe et recherches de documentation
-                                </td>
+                                <td style="padding:0.8rem; border-bottom:1px solid var(--border);">Problèmes de responsive sur certains écrans</td>
+                                <td style="padding:0.8rem; border-bottom:1px solid var(--border);">Utilisation de media queries et tests sur différents appareils</td>
                             </tr>
                             <tr>
-                                <td style="padding:0.8rem;">
-                                    Organisation du travail en groupe et gestion des notices
-                                </td>
-                                <td style="padding:0.8rem;">
-                                    Répartition claire des tâches et communication régulière
-                                </td>
+                                <td style="padding:0.8rem; border-bottom:1px solid var(--border);">Optimisation des performances</td>
+                                <td style="padding:0.8rem; border-bottom:1px solid var(--border);">Compression des images, minification du code</td>
+                            </tr>
+                            <tr>
+                                <td style="padding:0.8rem;">Accessibilité des couleurs</td>
+                                <td style="padding:0.8rem;">Choix de contrastes adaptés et tests avec des outils d’accessibilité</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
                 <p style="color: var(--text-secondary); font-style:italic;">
-                    <strong>Si c’était à refaire :</strong> Je prendrais plus de temps pour explorer les fonctionnalités avancées de Matlab et approfondir la documentation des scripts pour faciliter les futurs projets.
+                    <strong>Si c'était à refaire :</strong> Je prévoirais davantage de temps pour les phases de tests utilisateurs et d’optimisation, et j’intégrerais dès le début des outils d’audit d’accessibilité pour garantir une qualité optimale du produit final.
                 </p>
             </section>
         </div>
+
     </main>
 
     <script>
