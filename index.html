@@ -794,28 +794,31 @@
                 </div>
 
                 <div class="projects-section">
-                    <h2 class="section-title collapsed" data-toggle="semester2">
+                    <h2 class="section-title collapsed" data-toggle="semester2" >
                         <span>2ème Semestre</span>
                         <span class="toggle-arrow">▼</span>
                     </h2>
                     <div class="projects-content collapsed" id="semester2-content">
                         <div class="projects-grid">
-                            <div class="project-card animate-on-scroll">
+                            <div class="project-card animate-on-scroll" data-project="projet1-sem2">
                                 <span class="project-number">Projet 1</span>
-                                <h3 style="color: var(--accent-light); margin-bottom: 1rem;">Application Web React</h3>
-                                <p>Développement d'une application web complète avec React, Redux et API REST.</p>
+                                <span style="display:inline-block; background:var(--accent-primary); color:#fff; font-size:0.85rem; border-radius:8px; padding:2px 10px; margin-bottom:0.7rem; margin-left:0.5rem;">SAE201</span>
+                                <h3 style="color: var(--accent-light); margin-bottom: 1rem;">Construire un réseau informatique pour une petite structure</h3>
+                                <p>
+                                    Conception et déploiement d’un réseau sécurisé pour une petite structure, intégrant Active Directory et les fondamentaux Cisco. TP pratique sur Windows Server 2019 et validation des compétences réseau.
+                                </p>
                             </div>
-                            <div class="project-card animate-on-scroll">
+                            <div class="project-card animate-on-scroll" data-project="projet2-sem2">
                                 <span class="project-number">Projet 2</span>
                                 <h3 style="color: var(--accent-light); margin-bottom: 1rem;">API Node.js</h3>
                                 <p>Création d'une API RESTful avec Node.js, Express et authentification JWT.</p>
                             </div>
-                            <div class="project-card animate-on-scroll">
+                            <div class="project-card animate-on-scroll" data-project="projet3-sem2">
                                 <span class="project-number">Projet 3</span>
                                 <h3 style="color: var(--accent-light); margin-bottom: 1rem;">Application Mobile</h3>
                                 <p>Développement d'une application mobile cross-platform avec React Native.</p>
                             </div>
-                            <div class="project-card animate-on-scroll">
+                            <div class="project-card animate-on-scroll" data-project="projet4-sem2">
                                 <span class="project-number">Projet 4</span>
                                 <h3 style="color: var(--accent-light); margin-bottom: 1rem;">Système de Gestion</h3>
                                 <p>Conception d'un système de gestion complet avec Java Spring Boot et interface web.</p>
@@ -1126,6 +1129,8 @@
                     window.location.href = 'SAE104.html';
                 } else if (projectId === 'projet5-sem1') {
                     window.location.href = 'SAE105.html';
+                } else if (projectId === 'projet1-sem2') {
+                    window.location.href = 'SAE201.html';
                 } else {
                     window.location.href = `project-template.html?project=${projectId}`;
                 }

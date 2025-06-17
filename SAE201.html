@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Détails du Projet - Portfolio</title>
+    <style>
+        /* Reprendre les styles de base du index.html */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        #backgroundCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.5;
+            pointer-events: none;
+            background: var(--bg-primary);
+            display: block;
+        }
+
+        :root {
+            --bg-primary: #0f0f0f;
+            --bg-secondary: #1a1a1a;
+            --bg-card: #252525;
+            --accent-primary: #dc2626;
+            --accent-secondary: #ef4444;
+            --accent-light: #f87171;
+            --text-primary: #ffffff;
+            --text-secondary: #b0b0b0;
+            --text-muted: #808080;
+            --border: #333333;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .back-nav {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .conclusion-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            color: #fff;
+            background: linear-gradient(135deg, rgba(220,38,38,0.13), rgba(239,68,68,0.10)); /* Rouge foncé uni */
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        .conclusion-table th,
+        .conclusion-table td {
+            background: linear-gradient(135deg, rgba(220,38,38,0.13), rgba(239,68,68,0.10)); /* Même rouge foncé PARTOUT */
+            color: #fff;
+            border: none;
+        }
+        .conclusion-table thead th {
+            background: #361414; /* Gris foncé pour l’en-tête */
+            color: #fff;
+            font-weight: bold;
+        }
+        .conclusion-table tr {
+            border: none;
+        }
+        .conclusion-table tbody tr {
+            border-top: 1px solid rgba(255,255,255,0.10);
+        }
+
+        .logo {
+            background: linear-gradient(
+                120deg,
+                var(--text-primary) 0%,
+                var(--accent-primary) 25%,
+                var(--accent-light) 50%,
+                var(--accent-primary) 75%,
+                var(--text-primary) 100%
+            );
+            background-size: 200% auto;
+            color: transparent;
+            -webkit-background-clip: text;
+            background-clip: text;
+            animation: textShine 5s linear infinite;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            position: relative;
+            display: inline-block;
+        }
+
+        /* Animation du texte */
+        @keyframes textShine {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Effet de soulignement */
+        .logo::before {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-light));
+            transform-origin: right;
+            transform: scaleX(0);
+            transition: transform 0.5s ease;
+        }
+
+        .logo:hover::before {
+            transform-origin: left;
+            transform: scaleX(1);
+        }
+
+        /* Effet de particules */
+        .logo::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(
+                circle at var(--x, 50%) var(--y, 50%),
+                rgba(255, 255, 255, 0.2) 0%,
+                transparent 50%
+            );
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .logo:hover::after {
+            opacity: 1;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-top: 110px;
+            min-height: calc(100vh - 110px);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Project Details Styles */
+        .project-header {
+            background: rgba(220, 38, 38, 0.10);
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            border: 1px solid var(--border);
+        }
+
+        .project-title {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--text-primary), var(--accent-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .project-semester {
+            display: inline-block;
+            background: var(--accent-primary);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-meta {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+        }
+
+        .project-description {
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .project-section {
+            background: linear-gradient(135deg, rgba(220,38,38,0.13), rgba(239,68,68,0.10));
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border: 1px solid var(--border);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .project-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(139, 21, 56, 0.1);
+        }
+
+        .section-title {
+            color: var(--accent-light);
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-left: 1rem;
+        }
+
+        .section-title::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 25px;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-light));
+            border-radius: 2px;
+        }
+
+        .project-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .gallery-item {
+            background: var(--bg-secondary);
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .tech-tag {
+            background: var(--bg-secondary);
+            color: var(--accent-light);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            border: 1px solid var(--accent-primary);
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(15, 15, 15, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            padding: 2rem 0;
+            transition: all 0.3s ease;
+            min-height: 84px;
+            height: 103px;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        /* Style du bouton de retour */
+        .back-nav {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .back-button-nav {
+            color: var(--text-secondary);
+            text-decoration: none;
+            padding: 0.6rem 1.3rem;
+            border-radius: 10px;
+            font-size: 1.08rem;
+            font-weight: 600;
+            position: relative;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .back-button-nav::before {
+            content: '←';
+            margin-right: 0.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .back-button-nav:hover {
+            color: var(--accent-primary);
+            background: rgba(220,38,38,0.10);
+        }
+
+        .back-button-nav::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: 8px;
+            width: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-secondary), var(--accent-primary));
+            border-radius: 2px;
+            transition: width 0.35s cubic-bezier(.46,.03,.52,.96), left 0.35s cubic-bezier(.46,.03,.52,.96), background 0.4s;
+            z-index: 1;
+        }
+
+        .back-button-nav:hover::after {
+            left: 15%;
+            width: 70%;
+            background: linear-gradient(90deg, var(--accent-primary) 60%, var(--accent-light) 100%);
+        }
+
+        /* Animation du bouton de retour */
+        .back-button-nav:hover::before {
+            transform: translateX(-3px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            .project-title {
+                font-size: 2rem;
+            }
+
+            .project-meta {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: center;
+            }
+
+            .project-section {
+                padding: 1.5rem;
+            }
+
+            .back-button {
+                bottom: 1rem;
+                right: 1rem;
+                padding: 0.8rem 1.5rem;
+            }
+        }
+
+        /* Animations */
+        .animate-fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .animate-fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .custom-details {
+            margin-bottom: 2rem;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: rgba(15,15,15,0.75); /* fond translucide assombri */
+            transition: box-shadow 0.3s;
+            position: relative;
+        }
+        .custom-details[open] {
+            box-shadow: 0 8px 32px 0 rgba(220,38,38,0.12);
+        }
+        .custom-details summary {
+            cursor: pointer;
+            font-weight: bold;
+            color: var(--accent-primary);
+            font-size: 1.1rem;
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            user-select: none;
+            outline: none;
+            border-radius: 8px;
+            background: transparent;
+            position: relative;
+        }
+        .custom-details .arrow {
+            margin-left: auto;
+            width: 24px;
+            height: 24px;
+            display: inline-block;
+            transition: transform 0.3s cubic-bezier(.46,.03,.52,.96);
+            background: none;
+            position: relative;
+        }
+        .custom-details .arrow::after {
+            content: '';
+            display: block;
+            width: 12px;
+            height: 12px;
+            border-right: 3px solid var(--accent-primary);
+            border-bottom: 3px solid var(--accent-primary);
+            border-radius: 2px;
+            transform: rotate(45deg);
+            position: absolute;
+            right: 6px;
+            top: 4px;
+            transition: border-color 0.3s;
+        }
+        .custom-details[open] .arrow {
+            transform: rotate(90deg);
+        }
+    </style>
+    <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+</head>
+<body>
+    <canvas id="backgroundCanvas"></canvas>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="back-nav">
+                <a href="index.html" class="back-button-nav">
+                    Retour à l'accueil
+                </a>
+            </div>
+            <div class="logo">Portfolio</div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <!-- En-tête du projet -->
+            <div class="project-header animate-fade-up">
+                <span class="project-semester">2e Semestre</span>
+                <h1 class="project-title">Construire un réseau informatique pour une petite structure</h1>
+                <div class="project-meta">
+                    <div class="meta-item">
+                        <span>📅 Date :</span>
+                        <span>Mai 2025</span>
+                    </div>
+                    <div class="meta-item">
+                        <span>⏱️ Durée :</span>
+                        <span>22 Heures</span>
+                    </div>
+                    <div class="meta-item">
+                        <span>👥 Équipe :</span>
+                        <span>Projet individuel</span>
+                    </div>
+                </div>
+                <p class="project-description">
+                    Ce projet visait à concevoir et déployer un réseau informatique sécurisé pour une petite structure, en s'appuyant sur les compétences acquises lors d'une formation Active Directory (3h) et d'un cursus Cisco NetAcad "Switching and Routing" (70h). Après validation de ces modules, un TP a permis de mettre en œuvre un environnement Windows Server 2019 complet : création d’un domaine Active Directory, intégration de postes clients, gestion des utilisateurs, groupes, unités d’organisation et stratégies de groupe, afin de simuler un contexte professionnel réel.
+                </p>
+            </div>
+
+            <!-- Objectifs du projet -->
+            <section class="project-section animate-fade-up">
+                <h2 class="section-title">Objectifs</h2>
+                <ul style="list-style: none; padding-left: 1rem;">
+                    <li style="margin-bottom: 1rem; position: relative; padding-left: 1.5rem;">
+                        <span style="position: absolute; left: 0; color: var(--accent-primary);">▸</span>
+                        Comprendre les besoins d’une petite structure en matière de réseau informatique
+                    </li>
+                    <li style="margin-bottom: 1rem; position: relative; padding-left: 1.5rem;">
+                        <span style="position: absolute; left: 0; color: var(--accent-primary);">▸</span>
+                        Se former à Active Directory et aux fondamentaux du switching/routing Cisco
+                    </li>
+                    <li style="margin-bottom: 1rem; position: relative; padding-left: 1.5rem;">
+                        <span style="position: absolute; left: 0; color: var(--accent-primary);">▸</span>
+                        Mettre en place un environnement Windows Server 2019 sécurisé et fonctionnel
+                    </li>
+                    <li style="margin-bottom: 1rem; position: relative; padding-left: 1.5rem;">
+                        <span style="position: absolute; left: 0; color: var(--accent-primary);">▸</span>
+                        Implémenter des GPO, OU, utilisateurs, groupes et intégrer des clients au domaine
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Travaux réalisés -->
+            <section class="project-section animate-fade-up">
+                <h2 class="section-title">Travaux réalisés</h2>
+                <ul style="list-style: none; padding-left: 1rem;">
+                    <li style="margin-bottom: 1rem; position: relative; padding-left: 1.5rem;">
+                        <span style="position: absolute; left: 0; color: var(--accent-primary);">▸</span>
+                        Suivi et validation du cours Active Directory (3h) et de la formation Cisco NetAcad (70h)
+                    </li>
+                    <li style="margin-bottom: 1rem; position: relative; padding-left: 1.5rem;">
+                        <span style="position: absolute; left: 0; color: var(--accent-primary);">▸</span>
+                        Installation et configuration de Windows Server 2019 en environnement virtuel
+                    </li>
+                    <li style="margin-bottom: 1rem; position: relative; padding-left: 1.5rem;">
+                        <span style="position: absolute; left: 0; color: var(--accent-primary);">▸</span>
+                        Création d’un domaine Active Directory et intégration de postes clients
+                    </li>
+                    <li style="margin-bottom: 1rem; position: relative; padding-left: 1.5rem;">
+                        <span style="position: absolute; left: 0; color: var(--accent-primary);">▸</span>
+                        Implémentation de stratégies de groupe (GPO), d’unités d’organisation (OU), d’utilisateurs et de groupes
+                    </li>
+                    <li style="margin-bottom: 1rem; position: relative; padding-left: 1.5rem;">
+                        <span style="position: absolute; left: 0; color: var(--accent-primary);">▸</span>
+                        TP d’entraînement pour simuler un environnement professionnel sécurisé
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Apprentissage critique du référentiel -->
+            <section class="project-section animate-fade-up">
+                <h2 class="section-title">Apprentissage critique du référentiel</h2>
+                <div class="conclusion-table-wrapper" style="overflow-x:auto; margin-bottom:1.5rem;">
+                    <table class="conclusion-table">
+                        <thead>
+                            <tr style="background:var(--bg-card);">
+                                <th style="padding:1rem; border-bottom:1px solid var(--border); text-align:left;">APPRENTISSAGE</th>
+                                <th style="padding:1rem; border-bottom:1px solid var(--border); text-align:left;">COMMENTAIRE</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="padding:0.8rem; border-bottom:1px solid var(--border);">
+                                    AC11.02 Comprendre l’architecture et les fondements des systèmes numériques et les principes du code de l’information, des réseaux et de l’Internet
+                                </td>
+                                <td style="padding:0.8rem; border-bottom:1px solid var(--border);">
+                                    En cours d’acquisition
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding:0.8rem; border-bottom:1px solid var(--border);">
+                                    AC11.03 Configurer les fonctions de base du réseau local
+                                </td>
+                                <td style="padding:0.8rem; border-bottom:1px solid var(--border);">
+                                    En cours d’acquisition
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding:0.8rem; border-bottom:1px solid var(--border);">
+                                    AC11.04 Maîtriser les rôles et principes fondamentaux des systèmes d’exploitation afin d’interagir avec ceux-ci pour la configuration et l’administration des réseaux et services fournis
+                                </td>
+                                <td style="padding:0.8rem; border-bottom:1px solid var(--border);">
+                                    En cours d’acquisition
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding:0.8rem; border-bottom:1px solid var(--border);">
+                                    AC11.05 Identifier les dysfonctionnements du réseau local et savoir les signaler
+                                </td>
+                                <td style="padding:0.8rem; border-bottom:1px solid var(--border);">
+                                    En cours d’acquisition
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding:0.8rem;">
+                                    AC11.06 Installer un poste client, expliquer la procédure mise en place
+                                </td>
+                                <td style="padding:0.8rem;">
+                                    En cours d’acquisition
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Résultat du projet -->
+            <section class="project-section animate-fade-up">
+                <h2 class="section-title">Résultat du projet</h2>
+                <ul style="list-style: none; padding-left: 1rem;">
+                    <li style="margin-bottom: 1rem; position: relative; padding-left: 1.5rem;">
+                        <span style="position: absolute; left: 0; color: var(--accent-primary);">▸</span>
+                        Environnement Windows Server 2019 opérationnel avec domaine Active Directory fonctionnel
+                    </li>
+                    <li style="margin-bottom: 1rem; position: relative; padding-left: 1.5rem;">
+                        <span style="position: absolute; left: 0; color: var(--accent-primary);">▸</span>
+                        Postes clients intégrés et stratégies de groupe appliquées
+                    </li>
+                    <li style="margin-bottom: 1rem; position: relative; padding-left: 1.5rem;">
+                        <span style="position: absolute; left: 0; color: var(--accent-primary);">▸</span>
+                        Sécurisation de l’environnement et gestion des utilisateurs/OU
+                    </li>
+                </ul>
+            </section>
+
+            <section class="project-section animate-fade-up">
+                <h2 class="section-title">Preuves</h2>
+                <div style="margin-top:2rem; width:100%;">
+                    <details class="custom-details">
+                        <summary>
+                            <span style="font-size:1.7rem;">🌐</span> Aperçu du site officiel de la formation Cisco NetAcad
+                            <span class="arrow"></span>
+                        </summary>
+                        <div style="display: flex; flex-direction: column; align-items: center;">
+                            <a href="https://www.netacad.com/fr/courses/ccna-switching-routing-wireless-essentials?courseLang=fr-FR" target="_blank"
+                            style="color: var(--accent-primary); font-weight: bold; text-decoration: underline; font-size: 1.1rem; margin-bottom: 1.5rem; margin-top: 1.2rem; text-align:center; display:block;">
+                                Accéder au site officiel de la formation
+                            </a>
+                            <div style="width:960px; height:540px; max-width:100%; border:2px solid var(--accent-primary); border-radius:12px; overflow:hidden; box-shadow:0 4px 32px #0006; background:#222; position:relative; margin: 0 auto 2rem auto; display: flex; align-items: center; justify-content: center;">
+                                <iframe 
+                                    src="https://www.netacad.com/fr/courses/ccna-switching-routing-wireless-essentials?courseLang=fr-FR"
+                                    width="1920" 
+                                    height="1080" 
+                                    style="
+                                        width:1920px;
+                                        height:1080px;
+                                        border:none;
+                                        background:#fff;
+                                        display:block;
+                                        position:absolute;
+                                        left:0;
+                                        top:0;
+                                        transform:scale(0.5);
+                                        transform-origin:top left;
+                                        pointer-events:auto;
+                                        overflow:auto;
+                                    "
+                                    allowfullscreen
+                                    scrolling="yes">
+                                </iframe>
+                            </div>
+                        </div>
+                        <p style="color:var(--text-secondary); margin:1rem 2rem 0 2rem;">
+                            Prévisualisation intégrée du site officiel de la formation Cisco NetAcad "Switching, Routing & Wireless Essentials".
+                            <br>
+                            <strong>Remarque :</strong> Si le site ne s'affiche pas, cliquez sur le lien ci-dessus (certaines plateformes bloquent l'affichage en iframe).
+                        </p>
+                    </details>
+                </div>
+            </section>
+
+            <!-- Résultat -->
+            <section class="project-section animate-fade-up">
+                <h2 class="section-title">Résultat</h2>
+                <ul style="list-style: none; padding-left: 1rem;">
+                    <li style="margin-bottom: 1rem; position: relative; padding-left: 1.5rem;">
+                        <span style="position: absolute; left: 0; color: var(--accent-primary);">▸</span>
+                        Validation des deux formations (Cisco NetAcad et Active Directory)
+                    </li>
+                    <li style="margin-bottom: 1rem; position: relative; padding-left: 1.5rem;">
+                        <span style="position: absolute; left: 0; color: var(--accent-primary);">▸</span>
+                        TP Windows Server 2019 réalisé avec succès
+                    </li>
+                    <li style="margin-bottom: 1rem; position: relative; padding-left: 1.5rem;">
+                        <span style="position: absolute; left: 0; color: var(--accent-primary);">▸</span>
+                        Environnement professionnel simulé et sécurisé
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Conclusion -->
+            <section class="project-section animate-fade-up">
+                <h2 class="section-title">Conclusion</h2>
+                <p style="color: var(--text-secondary); margin-bottom: 1rem;">
+                    Ce projet m’a permis de mettre en pratique des compétences réseau avancées, de comprendre l’importance de la sécurité et de l’organisation dans un environnement professionnel, et de valider des certifications reconnues. J’ai pu expérimenter la gestion complète d’un domaine Active Directory et la configuration d’un réseau sécurisé, ce qui constitue un atout majeur pour la suite de mon parcours.<br>
+                    Avec le recul, j’aurais dû rédiger une notice ou une documentation pour m’aider lors du TP noté, ce qui m’aurait permis de gagner du temps et d’être plus efficace dans la réalisation des tâches demandées.
+                </p>
+                <div class="conclusion-table-wrapper" style="overflow-x:auto; margin-bottom:1.5rem;">
+                    <table class="conclusion-table">
+                        <thead>
+                            <tr style="background:var(--bg-card);">
+                                <th style="padding:1rem; border-bottom:1px solid var(--border); text-align:left;">Problèmes rencontrés</th>
+                                <th style="padding:1rem; border-bottom:1px solid var(--border); text-align:left;">Solutions apportées</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="padding:0.8rem; border-bottom:1px solid var(--border);">
+                                    Difficultés à configurer certaines stratégies de groupe (GPO)
+                                </td>
+                                <td style="padding:0.8rem; border-bottom:1px solid var(--border);">
+                                    Recherche de documentation officielle et tests en environnement virtuel
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding:0.8rem;">
+                                    Problèmes d’intégration de postes clients au domaine
+                                </td>
+                                <td style="padding:0.8rem;">
+                                    Vérification des paramètres réseau et support entre pairs
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p style="color: var(--text-secondary); font-style:italic;">
+                    <strong>Si c’était à refaire :</strong> Je passerais plus de temps sur la configuration avancée des GPO, la documentation des procédures et la rédaction d'une notice pour faciliter la reproduction du projet et m'aider lors du TP noté.
+                </p>
+            </section>
+        </div>
+
+    </main>
+
+    <script>
+        let canvas, ctx;
+        let points = [];
+        let mouseX = 0;
+        let mouseY = 0;
+        const numberOfPoints = 100;
+
+        // Classe Point pour l'animation du fond
+        class Point {
+            constructor(width, height) {
+                this.x = Math.random() * width;
+                this.y = Math.random() * height;
+                this.vx = (Math.random() - 0.5) * 0.5;
+                this.vy = (Math.random() - 0.5) * 0.5;
+                this.radius = Math.random() * 1.5;
+            }
+
+            update(width, height) {
+                const dx = mouseX - this.x;
+                const dy = mouseY - this.y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+                
+                if (distance < 100) {
+                    const angle = Math.atan2(dy, dx);
+                    this.vx -= Math.cos(angle) * 0.02;
+                    this.vy -= Math.sin(angle) * 0.02;
+                }
+
+                this.x += this.vx;
+                this.y += this.vy;
+
+                if (this.x < 0 || this.x > width) this.vx *= -1;
+                if (this.y < 0 || this.y > height) this.vy *= -1;
+
+                const maxSpeed = 2;
+                const speed = Math.sqrt(this.vx * this.vx + this.vy * this.vy);
+                if (speed > maxSpeed) {
+                    this.vx = (this.vx / speed) * maxSpeed;
+                    this.vy = (this.vy / speed) * maxSpeed;
+                }
+            }
+        }
+
+        function initCanvas() {
+            canvas = document.getElementById('backgroundCanvas');
+            if (!canvas) return;
+            
+            ctx = canvas.getContext('2d');
+            if (!ctx) return;
+
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+
+            initPoints();
+            animate();
+
+            window.addEventListener('resize', () => {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+                initPoints();
+            });
+
+            window.addEventListener('mousemove', (e) => {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+            });
+        }
+
+        function initPoints() {
+            points = [];
+            for (let i = 0; i < numberOfPoints; i++) {
+                points.push(new Point(canvas.width, canvas.height));
+            }
+        }
+
+        function animate() {
+            if (!ctx || !canvas) return;
+
+            ctx.fillStyle = 'rgba(15, 15, 15, 0.2)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            points.forEach(point => point.update(canvas.width, canvas.height));
+
+            for (let i = 0; i < points.length; i++) {
+                for (let j = i + 1; j < points.length; j++) {
+                    const dx = points[i].x - points[j].x;
+                    const dy = points[i].y - points[j].y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+
+                    if (distance < 150) {
+                        const opacity = (1 - distance / 150);
+                        ctx.strokeStyle = `rgba(220, 38, 38, ${opacity})`;
+                        ctx.lineWidth = opacity * 2;
+                        
+                        ctx.beginPath();
+                        ctx.moveTo(points[i].x, points[i].y);
+                        ctx.lineTo(points[j].x, points[j].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+
+            points.forEach(point => {
+                ctx.beginPath();
+                ctx.arc(point.x, point.y, point.radius * 4, 0, Math.PI * 2);
+                ctx.fillStyle = 'rgba(239, 68, 68, 1)';
+                ctx.fill();
+
+                ctx.beginPath();
+                ctx.arc(point.x, point.y, point.radius * 8, 0, Math.PI * 2);
+                ctx.fillStyle = 'rgba(239, 68, 68, 0.1)';
+                ctx.fill();
+            });
+
+            requestAnimationFrame(animate);
+        }
+
+        function setupLogoAnimation() {
+            const logo = document.querySelector('.logo');
+            if (!logo) return;
+
+            logo.addEventListener('mousemove', (e) => {
+                const rect = logo.getBoundingClientRect();
+                const x = ((e.clientX - rect.left) / logo.offsetWidth) * 100;
+                const y = ((e.clientY - rect.top) / logo.offsetHeight) * 100;
+                
+                logo.style.setProperty('--x', `${x}%`);
+                logo.style.setProperty('--y', `${y}%`);
+            });
+
+            let scale = 1;
+            let increasing = true;
+            
+            function pulse() {
+                if (increasing) {
+                    scale += 0.001;
+                    if (scale >= 1.05) increasing = false;
+                } else {
+                    scale -= 0.001;
+                    if (scale <= 1) increasing = true;
+                }
+                
+                logo.style.transform = `scale(${scale})`;
+                requestAnimationFrame(pulse);
+            }
+
+            pulse();
+        }
+
+        // Initialisation
+        document.addEventListener('DOMContentLoaded', function() {
+            initCanvas();
+            setupLogoAnimation();
+            
+            // Animation au scroll existante...
+            animateOnScroll();
+            window.addEventListener('scroll', animateOnScroll);
+            
+            // Navbar au scroll existante...
+            window.addEventListener('scroll', function() {
+                const navbar = document.querySelector('.navbar');
+                navbar.style.background = window.scrollY > 50 ? 
+                    'rgba(15, 15, 15, 0.98)' : 
+                    'rgba(15, 15, 15, 0.95)';
+            });
+
+            // Récupération des paramètres URL existante...
+            const urlParams = new URLSearchParams(window.location.search);
+            const projectId = urlParams.get('project');
+        });
+        // Animation au scroll
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.animate-fade-up');
+            
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.classList.add('visible');
+                }
+            });
+        }
+
+        // Animation initiale
+        document.addEventListener('DOMContentLoaded', function() {
+            animateOnScroll();
+            
+            // Animation au scroll
+            window.addEventListener('scroll', animateOnScroll);
+            
+            // Navbar au scroll
+            window.addEventListener('scroll', function() {
+                const navbar = document.querySelector('.navbar');
+                if (window.scrollY > 50) {
+                    navbar.style.background = 'rgba(15, 15, 15, 0.98)';
+                } else {
+                    navbar.style.background = 'rgba(15, 15, 15, 0.95)';
+                }
+            });
+
+            // Récupérer les paramètres de l'URL pour charger le bon projet
+            const urlParams = new URLSearchParams(window.location.search);
+            const projectId = urlParams.get('project');
+            
+            // Ici, vous pouvez ajouter la logique pour charger les données du projet
+            // en fonction du projectId
+        });
+    </script>
+</body>
+</html>
