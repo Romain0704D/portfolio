@@ -781,10 +781,13 @@
                                     Création d’un site web multipages (HTML/CSS), respect des standards d’accessibilité, responsive design, animations CSS et documentation sur GitHub Pages.
                                 </p>
                             </div>
-                            <div class="project-card animate-on-scroll">
+                            <div class="project-card animate-on-scroll" data-project="projet5-sem1" onclick="window.location.href='SAE105.html'">
                                 <span class="project-number">Projet 5</span>
-                                <h3 style="color: var(--accent-light); margin-bottom: 1rem;">Analyse de Données</h3>
-                                <p>Projet d'analyse de données avec Python, pandas et matplotlib pour visualiser les tendances.</p>
+                                <span style="display:inline-block; background:var(--accent-primary); color:#fff; font-size:0.85rem; border-radius:8px; padding:2px 10px; margin-bottom:0.7rem; margin-left:0.5rem;">SAE105</span>
+                                <h3 style="color: var(--accent-light); margin-bottom: 1rem;">Traitement des données</h3>
+                                <p>
+                                    Réalisation d’un programme Python pour automatiser la collecte, le traitement et l’export de statistiques à partir de données issues d’une API en ligne (PokeAPI). Génération de rapports en Markdown et visualisation de fiches dynamiques.
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -1121,6 +1124,8 @@
                     window.location.href = 'SAE103.html';
                 } else if (projectId === 'projet4-sem1') {
                     window.location.href = 'SAE104.html';
+                } else if (projectId === 'projet5-sem1') {
+                    window.location.href = 'SAE105.html';
                 } else {
                     window.location.href = `project-template.html?project=${projectId}`;
                 }

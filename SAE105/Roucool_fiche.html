@@ -1,0 +1,69 @@
+
+    <!DOCTYPE html>
+    <html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Fiche de Roucool</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 20px;
+                transition: background-color 0.3s, color 0.3s;
+            }
+            .dark-mode {
+                background-color: #121212;
+                color: white;
+            }
+            button {
+                position: fixed;
+                top: 10px;
+                right: 10px;
+                padding: 15px 25px;
+                background-color: #56001f;
+                color: white;
+                border: none;
+                cursor: pointer;
+                font-size: 16px;
+                border-radius: 12px;
+                transition: transform 0.2s ease, background-color 0.3s ease;
+            }
+            button:hover {
+                background-color: #25000d;
+                transform: scale(1.1);
+            }
+        </style>
+    </head>
+    <body>
+        <button onclick="toggleDarkMode()">Mode sombre/clair</button>
+        <div id="content">
+            <h1>Fiche Pokémon : Roucool</h1>
+<p><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/16.png" alt="Sprite de Roucool" width="150" height="150"></p>
+<h2>Informations générales</h2>
+<ul>
+<li><strong>Taille</strong> : 0.3m</li>
+<li><strong>Poids</strong> : 1.8kg</li>
+<li><strong>Type(s)</strong> : Normal, Vol</li>
+</ul>
+<h2>Statistiques</h2>
+<ul>
+<li><strong>Pv</strong> : 40</li>
+<li><strong>Attaque</strong> : 45</li>
+<li><strong>Défense</strong> : 40</li>
+<li><strong>Attaque spéciale</strong> : 35</li>
+<li><strong>Défense spéciale</strong> : 35</li>
+<li><strong>Vitesse</strong> : 56</li>
+</ul>
+<h2>Plus d'informations</h2>
+<ul>
+<li><a href="https://www.pokebip.com/pokedex/ecarlate-violet/pokemon/roucool">Description complète sur Pokebip</a></li>
+</ul>
+        </div>
+        <script>
+            function toggleDarkMode() {
+                document.body.classList.toggle('dark-mode');
+            }
+        </script>
+    </body>
+    </html>
+    
