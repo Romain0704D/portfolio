@@ -1316,17 +1316,28 @@
     }
 
     function setupProjectCardHoverEffect() {
-        // Pour chaque grille de projets, gérer l'effet de hover
+        // For each project grid, manage the hover effect
         document.querySelectorAll('.projects-grid').forEach(grid => {
             const cards = grid.querySelectorAll('.project-card');
+            let removeTimeout = null;
             
             cards.forEach(card => {
                 card.addEventListener('mouseenter', () => {
+                    // Cancel any pending removal
+                    if (removeTimeout) {
+                        clearTimeout(removeTimeout);
+                        removeTimeout = null;
+                    }
                     grid.classList.add('has-hovered-card');
                 });
                 
                 card.addEventListener('mouseleave', () => {
-                    grid.classList.remove('has-hovered-card');
+                    // Add a small delay before removing the class
+                    // This prevents flickering when moving between cards
+                    removeTimeout = setTimeout(() => {
+                        grid.classList.remove('has-hovered-card');
+                        removeTimeout = null;
+                    }, 50);
                 });
             });
         });
