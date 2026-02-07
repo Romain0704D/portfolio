@@ -503,7 +503,7 @@
             z-index: 10;
         }
 
-        .projects-grid:hover .project-card:not(:hover) {
+        .projects-grid.has-hovered-card .project-card:not(:hover) {
             filter: blur(1.5px) grayscale(0.2) brightness(0.92);
             opacity: 0.7;
             transform: scale(0.97);
@@ -514,7 +514,7 @@
             .project-card:hover {
                 transform: scale(1.03);
             }
-            .projects-grid:hover .project-card:not(:hover) {
+            .projects-grid.has-hovered-card .project-card:not(:hover) {
                 filter: none;
                 opacity: 1;
                 transform: scale(1);
@@ -1315,6 +1315,34 @@
         pulse();
     }
 
+    function setupProjectCardHoverEffect() {
+        // For each project grid, manage the hover effect
+        document.querySelectorAll('.projects-grid').forEach(grid => {
+            const cards = grid.querySelectorAll('.project-card');
+            let removeTimeout = null;
+            
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    // Cancel any pending removal
+                    if (removeTimeout) {
+                        clearTimeout(removeTimeout);
+                        removeTimeout = null;
+                    }
+                    grid.classList.add('has-hovered-card');
+                });
+                
+                card.addEventListener('mouseleave', () => {
+                    // Add a small delay before removing the class
+                    // This prevents flickering when moving between cards
+                    removeTimeout = setTimeout(() => {
+                        grid.classList.remove('has-hovered-card');
+                        removeTimeout = null;
+                    }, 50);
+                });
+            });
+        });
+    }
+
     // Initialisation
     window.addEventListener('load', function() {
         initCanvas();
@@ -1324,6 +1352,7 @@
         setupSectionToggles();
         setupProjectCards();
         setupLogoAnimation();
+        setupProjectCardHoverEffect();
     });
     </script>
 </body>
